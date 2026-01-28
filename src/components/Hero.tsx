@@ -51,13 +51,13 @@ const Hero = () => {
 
                     <div style={{ display: 'flex', gap: '1rem' }}>
                         {/* Social Links Placeholders */}
-                        <a href="https://github.com/Diabue" style={{ padding: '0.5rem', borderRadius: '50%', background: 'var(--surface-color)' }}>
+                        <a href="https://github.com/Diabue" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem', borderRadius: '50%', background: 'var(--surface-color)' }}>
                             <Github size={24} />
                         </a>
-                        <a href="#" style={{ padding: '0.5rem', borderRadius: '50%', background: 'var(--surface-color)' }}>
+                        <a href="#" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem', borderRadius: '50%', background: 'var(--surface-color)' }}>
                             <Linkedin size={24} />
                         </a>
-                        <a href="mailto:maksymilian.kasprowicz@gmail.com" style={{ padding: '0.5rem', borderRadius: '50%', background: 'var(--surface-color)' }}>
+                        <a href="mailto:maksymilian.kasprowicz@gmail.com" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem', borderRadius: '50%', background: 'var(--surface-color)' }}>
                             <Mail size={24} />
                         </a>
                     </div>
