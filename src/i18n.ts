@@ -27,11 +27,11 @@ i18n
                         title: "My Career",
                         role_admin: "IT Administrator",
                         company_gk: "GolfKlub Puszczykowo",
-                        period_gk: "2018 - Present",
+                        period_gk: "2023 - Present",
                         desc_gk: "Managing IT infrastructure, network security, and user support.",
                         role_dev: "Web Developer",
                         company_freelance: "Freelance",
-                        period_freelance: "2023 - Present",
+                        period_freelance: "2025 - Present",
                         desc_freelance: "Building modern websites and applications for clients."
                     },
                     projects: {
@@ -60,11 +60,11 @@ i18n
                         title: "Moja Kariera",
                         role_admin: "Administrator IT",
                         company_gk: "GolfKlub Puszczykowo",
-                        period_gk: "2018 - Obecnie",
+                        period_gk: "2023 - Obecnie",
                         desc_gk: "Zarządzanie infrastrukturą IT, bezpieczeństwem sieci i wsparciem użytkowników.",
                         role_dev: "Web Developer",
                         company_freelance: "Freelancer",
-                        period_freelance: "2023 - Obecnie",
+                        period_freelance: "2025 - Obecnie",
                         desc_freelance: "Tworzenie nowoczesnych stron i aplikacji dla klientów."
                     },
                     projects: {
