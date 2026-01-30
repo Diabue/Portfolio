@@ -3,6 +3,7 @@ import { X, ExternalLink, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import project1Img from '../assets/project1.png';
+import dashboardImg from '../assets/dashboard.png';
 
 const Projects = () => {
     const { t } = useTranslation();
@@ -19,11 +20,11 @@ const Projects = () => {
         },
         {
             id: 2,
-            title: t('projects.p2_title'),
+            title: "Admin Dashboard",
             description: t('projects.p2_desc'),
-            url: "https://example.org", // Placeholder
+            url: "/dashboard-app/index.html",
             color: "#10b981",
-            image: null
+            image: dashboardImg
         },
         {
             id: 3,
