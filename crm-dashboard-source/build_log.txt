@@ -1,0 +1,2 @@
+src/components/CalendarView.tsx(82,41): error TS6133: 'dayIdx' is declared but its value is never read.
+src/pages/Tasks.tsx(2,101): error TS6133: 'LayoutGrid' is declared but its value is never read.

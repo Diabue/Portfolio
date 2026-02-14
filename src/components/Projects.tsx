@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import project1Img from '../assets/project1.png';
 import dashboardImg from '../assets/dashboard.png';
+import project3Img from '../assets/project3.png';
 
 const Projects = () => {
     const { t } = useTranslation();
@@ -30,9 +31,9 @@ const Projects = () => {
             id: 3,
             title: t('projects.p3_title'),
             description: t('projects.p3_desc'),
-            url: "https://bing.com", // Placeholder
+            url: "/crm-dashboard/index.html",
             color: "#8b5cf6",
-            image: null
+            image: project3Img
         }
     ];
 
@@ -41,10 +42,14 @@ const Projects = () => {
             <div className="container">
                 <h2 style={{
                     textAlign: 'center',
-                    marginBottom: '3rem',
-                    fontSize: '2.5rem'
+                    marginBottom: '4rem',
+                    fontSize: 'clamp(2rem, 4vw, 3rem)'
                 }}>
-                    {t('projects.title')} <span style={{ color: 'var(--accent-color)' }}>{t('projects.title_accent')}</span>
+                    {t('projects.title')} <span style={{
+                        background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                    }}>{t('projects.title_accent')}</span>
                 </h2>
 
                 <div style={{
@@ -56,17 +61,22 @@ const Projects = () => {
                         <motion.div
                             layoutId={`project-${project.id}`}
                             key={project.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             style={{
-                                backgroundColor: 'var(--surface-color, #1a1a1a)',
-                                borderRadius: '1rem',
+                                backgroundColor: 'var(--surface-color)',
+                                borderRadius: '1.5rem',
                                 overflow: 'hidden',
-                                border: '1px solid rgba(255,255,255,0.1)',
+                                border: '1px solid var(--border-color)',
                                 cursor: 'pointer',
-                                position: 'relative'
+                                position: 'relative',
+                                display: 'flex',
+                                flexDirection: 'column'
                             }}
                             className="project-card"
                             onClick={() => setExpandedId(project.id)}
-                            whileHover={{ scale: 1.02 }}
+                            whileHover={{ y: -10, boxShadow: '0 20px 40px -10px rgba(0,0,0,0.5)' }}
                             transition={{ duration: 0.3 }}
                         >
                             <motion.div
@@ -87,8 +97,8 @@ const Projects = () => {
                                 layoutId={`content-${project.id}`}
                                 style={{ padding: '1.5rem' }}
                             >
-                                <h3 style={{ marginBottom: '0.5rem', fontSize: '1.25rem' }}>{project.title}</h3>
-                                <p style={{ color: 'var(--text-secondary, #aaa)' }}>{project.description}</p>
+                                <h3 style={{ marginBottom: '0.5rem', fontSize: '1.5rem' }}>{project.title}</h3>
+                                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.5 }}>{project.description}</p>
                             </motion.div>
                         </motion.div>
                     ))}
@@ -138,7 +148,7 @@ const Projects = () => {
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     alignItems: 'center',
-                                    backgroundColor: '#111'
+                                    backgroundColor: '#1e1b4b' // Darker indigo for header
                                 }}
                             >
                                 <h3 style={{ margin: 0 }}>

@@ -1,0 +1,10 @@
+
+name = "crm"
+compatibility_date = "2026-01-30"
+
+[site]
+bucket = "./dist"
+
+[build]
+command = "npm run build"
+watch_dir = "."

@@ -16,13 +16,15 @@ function App() {
       <Projects />
 
       <footer style={{
-        padding: '2rem',
+        padding: '3rem 2rem',
         textAlign: 'center',
         color: 'var(--text-secondary)',
-        borderTop: '1px solid #333',
-        marginTop: 'auto'
+        borderTop: '1px solid var(--border-color)',
+        marginTop: 'auto',
+        background: 'rgba(15, 23, 42, 0.5)',
+        backdropFilter: 'blur(10px)'
       }}>
-        <p>&copy; {new Date().getFullYear()} Max. {t('footer.rights')}</p>
+        <p style={{ fontSize: '0.9rem' }}>&copy; {new Date().getFullYear()} Max. {t('footer.rights')}</p>
       </footer>
     </div>
   );

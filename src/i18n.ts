@@ -41,8 +41,8 @@ i18n
                         p1_desc: "A showcase of web development skills.",
                         p2_title: "Project Two",
                         p2_desc: "Interactive application interface.",
-                        p3_title: "Project Three",
-                        p3_desc: "Modern responsive design.",
+                        p3_title: "CRM Dashboard",
+                        p3_desc: "Comprehensive CRM solution with email integration.",
                         open: "Open"
                     },
                     footer: {
@@ -74,8 +74,8 @@ i18n
                         p1_desc: "Prezentacja umiejętności tworzenia stron www.",
                         p2_title: "Projekt Dwa",
                         p2_desc: "Interaktywny interfejs aplikacji.",
-                        p3_title: "Projekt Trzy",
-                        p3_desc: "Nowoczesny responsywny design.",
+                        p3_title: "Panel CRM",
+                        p3_desc: "Rozbudowany system CRM z integracją e-mail.",
                         open: "Otwórz"
                     },
                     footer: {

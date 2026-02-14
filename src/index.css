@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
 :root {
-  --bg-color: #121212;
-  --surface-color: #1e1e1e;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --accent-color: #3b82f6;
-  /* Blue accent */
-  --accent-hover: #2563eb;
-  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-color: #0f172a;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-hover: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-color: #a78bfa;
+  --accent-glow: 0 0 20px rgba(167, 139, 250, 0.5);
+  --font-family: 'Outfit', sans-serif;
 }
 
 * {
@@ -17,10 +21,11 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-color);
+  background: var(--bg-gradient);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
