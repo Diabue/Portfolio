@@ -7,6 +7,13 @@ const Career = () => {
 
     const experiences = [
         {
+            role: t('career.role_edu'),
+            company: t('career.school_edu'),
+            period: t('career.period_edu'),
+            description: t('career.desc_edu'),
+            current: true
+        },
+        {
             role: t('career.role_dev'),
             company: t('career.company_freelance'),
             period: t('career.period_freelance'),

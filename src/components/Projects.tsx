@@ -52,11 +52,7 @@ const Projects = () => {
                     }}>{t('projects.title_accent')}</span>
                 </h2>
 
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '2rem'
-                }}>
+                <div className="projects-grid">
                     {projects.map((project) => (
                         <motion.div
                             layoutId={`project-${project.id}`}

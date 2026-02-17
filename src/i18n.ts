@@ -32,12 +32,16 @@ i18n
                         role_dev: "Web Developer",
                         company_freelance: "Freelance",
                         period_freelance: "2025 - Present",
-                        desc_freelance: "Building modern websites and applications for clients."
+                        desc_freelance: "Building modern websites and applications for clients.",
+                        role_edu: "Student",
+                        school_edu: "Technikum nr 19 im. Marszałka Józefa Piłsudzkiego",
+                        period_edu: "2023 - 2028",
+                        desc_edu: "Profile: IT Technician"
                     },
                     projects: {
                         title: "My",
                         title_accent: "Projects",
-                        p1_title: "Project One",
+                        p1_title: "Website Example",
                         p1_desc: "A showcase of web development skills.",
                         p2_title: "Project Two",
                         p2_desc: "Interactive application interface.",
@@ -65,12 +69,16 @@ i18n
                         role_dev: "Web Developer",
                         company_freelance: "Freelancer",
                         period_freelance: "2025 - Obecnie",
-                        desc_freelance: "Tworzenie nowoczesnych stron i aplikacji dla klientów."
+                        desc_freelance: "Tworzenie nowoczesnych stron i aplikacji dla klientów.",
+                        role_edu: "Uczeń",
+                        school_edu: "Technikum nr 19 im. Marszałka Józefa Piłsudzkiego",
+                        period_edu: "2023 - 2028",
+                        desc_edu: "Profil: Technik Informatyk"
                     },
                     projects: {
                         title: "Moje",
                         title_accent: "Projekty",
-                        p1_title: "Projekt Jeden",
+                        p1_title: "Przykład Strony",
                         p1_desc: "Prezentacja umiejętności tworzenia stron www.",
                         p2_title: "Projekt Dwa",
                         p2_desc: "Interaktywny interfejs aplikacji.",
