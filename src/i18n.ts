@@ -38,6 +38,11 @@ i18n
                         period_edu: "2023 - 2028",
                         desc_edu: "Profile: IT Technician"
                     },
+                    skills: {
+                        title: "My",
+                        title_accent: "Skills",
+                        subtitle: "Technologies and tools I work with on a daily basis."
+                    },
                     projects: {
                         title: "My",
                         title_accent: "Projects",
@@ -47,6 +52,10 @@ i18n
                         p2_desc: "Interactive application interface.",
                         p3_title: "CRM Dashboard",
                         p3_desc: "Comprehensive CRM solution with email integration.",
+                        p4_title: "Sala Legend",
+                        p4_desc: "Luxury event venue website with booking system, gallery and events management.",
+                        p5_title: "FinePPF",
+                        p5_desc: "Premium car PPF & detailing studio website with product catalog and contact system.",
                         open: "Open"
                     },
                     footer: {
@@ -75,6 +84,11 @@ i18n
                         period_edu: "2023 - 2028",
                         desc_edu: "Profil: Technik Informatyk"
                     },
+                    skills: {
+                        title: "Moje",
+                        title_accent: "Umiejętności",
+                        subtitle: "Technologie i narzędzia, z których korzystam na co dzień."
+                    },
                     projects: {
                         title: "Moje",
                         title_accent: "Projekty",
@@ -84,6 +98,10 @@ i18n
                         p2_desc: "Interaktywny interfejs aplikacji.",
                         p3_title: "Panel CRM",
                         p3_desc: "Rozbudowany system CRM z integracją e-mail.",
+                        p4_title: "Sala Legend",
+                        p4_desc: "Strona luksusowego obiektu eventowego z rezerwacjami, galerią i systemem zarządzania wydarzeniami.",
+                        p5_title: "FinePPF",
+                        p5_desc: "Strona premium studia detailingowego z katalogiem produktów i systemem kontaktu.",
                         open: "Otwórz"
                     },
                     footer: {

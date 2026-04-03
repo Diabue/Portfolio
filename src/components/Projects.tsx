@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import project1Img from '../assets/project1.png';
 import dashboardImg from '../assets/dashboard.png';
 import project3Img from '../assets/project3.png';
+import project4Img from '../assets/project4.png';
+import projekt5Img from '../assets/projekt5.png';
 
 const Projects = () => {
     const { t } = useTranslation();
@@ -34,8 +36,25 @@ const Projects = () => {
             url: "/crm-dashboard/index.html",
             color: "#8b5cf6",
             image: project3Img
+        },
+        {
+            id: 4,
+            title: t('projects.p4_title'),
+            description: t('projects.p4_desc'),
+            url: "/sala-legend/index.html",
+            color: "#c39b57",
+            image: project4Img
+        },
+        {
+            id: 5,
+            title: t('projects.p5_title'),
+            description: t('projects.p5_desc'),
+            url: "/fineppf/index.html",
+            color: "#2563eb",
+            image: projekt5Img
         }
     ];
+
 
     return (
         <section className="section projects" id="projects" style={{ padding: '4rem 0' }}>

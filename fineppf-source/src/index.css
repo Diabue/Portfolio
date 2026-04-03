@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    /* Pure black/very dark gray */
+    --foreground: 0 0% 100%;
+    /* White text */
+
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 100%;
+
+    --primary: 220 70% 50%;
+    /* A sleek blue/silver accent for PPF - kept same or optional white/silver */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 5.9% 10%;
+    --secondary-foreground: 240 4.8% 95.9%;
+
+    --muted: 240 3.8% 10%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 5.9% 10%;
+    --accent-foreground: 240 4.8% 95.9%;
+
+    --border: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-black text-white font-orbitron antialiased;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-normal;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-zinc-900/80 backdrop-blur-md border border-zinc-800 shadow-sm transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply shadow-md border-zinc-700 translate-y-[-2px] bg-zinc-900/95;
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+}

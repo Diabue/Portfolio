@@ -1,6 +1,7 @@
 import Hero from './components/Hero';
 import { useTranslation } from 'react-i18next';
 import Career from './components/Career';
+import Skills from './components/Skills';
 import Projects from './components/Projects';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import './i18n';
@@ -13,6 +14,7 @@ function App() {
       <LanguageSwitcher />
       <Hero />
       <Career />
+      <Skills />
       <Projects />
 
       <footer style={{

@@ -1,0 +1,10 @@
+
+name = "sala-legend"
+compatibility_date = "2026-02-25"
+
+[site]
+bucket = "./dist"
+
+[build]
+command = "npm run build"
+watch_dir = "."
