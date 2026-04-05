@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ExternalLink, ArrowLeft, Eye, TrendingUp } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Eye, TrendingUp, AlertCircle, Lightbulb, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Reveal } from './Reveal';
@@ -17,32 +17,38 @@ const Projects = () => {
         {
             id: 1,
             title: t('projects.p1_title'),
-            description: t('projects.p1_desc'),
+            problem: t('projects.p1_prob'),
+            solution: t('projects.p1_sol'),
+            result: t('projects.p1_res'),
             url: "/sala-legend/index.html",
             color: "#c39b57",
             tag: "Event Venue",
             image: project4Img,
-            result: "+40% Rezerwacji"
+            metric: "+40% Rezerwacji"
         },
         {
             id: 2,
             title: t('projects.p2_title'),
-            description: t('projects.p2_desc'),
+            problem: t('projects.p2_prob'),
+            solution: t('projects.p2_sol'),
+            result: t('projects.p2_res'),
             url: "/fineppf/index.html",
             color: "#2563eb",
             tag: "Detailing Studio",
             image: projekt5Img,
-            result: "Klienci Premium"
+            metric: "Klient Premium"
         },
         {
             id: 3,
             title: t('projects.p3_title'),
-            description: t('projects.p3_desc'),
+            problem: t('projects.p3_prob'),
+            solution: t('projects.p3_sol'),
+            result: t('projects.p3_res'),
             url: "/crm-dashboard/index.html",
             color: "#8b5cf6",
-            tag: "AI CRM",
+            tag: "Software Solution",
             image: project3Img,
-            result: "20h Oszczędności/Tydz"
+            metric: "20h/Tydz Oszczędności"
         }
     ];
 
@@ -52,23 +58,28 @@ const Projects = () => {
         <section id="projects" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '6rem 2rem' }}>
             <div className="container">
                 <Reveal>
-                    <h2 style={{
-                        textAlign: 'center',
-                        marginBottom: '4rem',
-                        fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                        fontWeight: 800,
-                        letterSpacing: '-0.03em'
-                    }}>
-                        {t('projects.title')}{' '}
-                        <span style={{
-                            background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent'
-                        }}>{t('projects.titleAccent')}</span>
-                    </h2>
+                    <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+                        <h2 style={{
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                            fontWeight: 800,
+                            letterSpacing: '-0.04em',
+                            lineHeight: 1.1
+                        }}>
+                            {t('projects.title')}{' '}
+                            <span style={{
+                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                            }}>{t('projects.titleAccent')}</span>
+                        </h2>
+                    </div>
                 </Reveal>
 
-                <div className="projects-grid">
+                <div className="projects-grid" style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+                    gap: '2.5rem' 
+                }}>
                     {projects.map((project, idx) => (
                         <ProjectCard
                             key={project.id}
@@ -78,7 +89,6 @@ const Projects = () => {
                             onHover={setHoveredId}
                             onClick={() => setExpandedId(project.id)}
                             t={t}
-                            direction={idx % 2 === 0 ? 'left' : 'right'}
                         />
                     ))}
                 </div>
@@ -119,9 +129,11 @@ const Projects = () => {
                                         </button>
                                         <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 600 }}>{expandedProject.title}</h3>
                                     </div>
-                                    <a href={expandedProject.url} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.25rem', background: expandedProject.color, borderRadius: '0.75rem', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-                                        Otwórz Live <ExternalLink size={14} />
-                                    </a>
+                                    <div style={{ display: 'flex', gap: '1rem' }}>
+                                        <a href={expandedProject.url} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.25rem', background: expandedProject.color, borderRadius: '0.75rem', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+                                            Otwórz Live <ExternalLink size={14} />
+                                        </a>
+                                    </div>
                                 </div>
                                 <div style={{ flex: 1, position: 'relative', background: '#000' }}>
                                     <iframe src={expandedProject.url} style={{ width: '100%', height: '100%', border: 'none' }} />
@@ -137,30 +149,64 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ project, idx, isHovered, onHover, onClick, t }: any) => (
-    <Reveal delay={idx * 0.1}>
+    <Reveal delay={idx * 0.15} direction={idx % 2 === 0 ? 'left' : 'right'}>
         <motion.div
             onClick={onClick}
             onHoverStart={() => onHover(project.id)}
             onHoverEnd={() => onHover(null)}
             className="glass-panel"
-            style={{ borderRadius: '1.25rem', overflow: 'hidden', cursor: 'pointer', position: 'relative', border: isHovered ? `1px solid ${project.color}55` : '1px solid rgba(167, 139, 250, 0.15)' }}
+            style={{ 
+                borderRadius: '1.5rem', 
+                overflow: 'hidden', 
+                cursor: 'pointer', 
+                position: 'relative', 
+                border: isHovered ? `1px solid ${project.color}55` : '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(255, 255, 255, 0.02)'
+            }}
         >
-            <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
-                <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: isHovered ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.5s ease' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(2, 6, 23, 0.9))', display: 'flex', alignItems: 'flex-end', padding: '1.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: project.color, fontWeight: 700, fontSize: '0.9rem', backgroundColor: 'rgba(255,255,255,0.05)', padding: '0.5rem 1rem', borderRadius: '2rem', backdropFilter: 'blur(5px)' }}>
-                        <TrendingUp size={16} /> {project.result}
+            <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
+                <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: isHovered ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(2, 6, 23, 0.95))' }} />
+                
+                <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: project.color, fontWeight: 800, fontSize: '0.95rem', backgroundColor: 'rgba(255,255,255,0.08)', padding: '0.6rem 1.25rem', borderRadius: '3rem', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                        <TrendingUp size={18} strokeWidth={2.5} /> {project.metric}
                     </div>
                 </div>
             </div>
-            <div style={{ padding: '1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>{project.title}</h3>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{project.tag}</span>
+
+            <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h3 style={{ fontSize: '1.75rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' }}>{project.title}</h3>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.95rem', marginBottom: '1.5rem' }}>{project.description}</p>
-                <div style={{ color: project.color, fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {t('projects.open')} <Eye size={16} />
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                        <AlertCircle size={18} color="#ef4444" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0 }}>{project.problem}</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                        <Lightbulb size={18} color="#eab308" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0 }}>{project.solution}</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                        <CheckCircle2 size={18} color="#10b981" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <p style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, margin: 0 }}>{project.result}</p>
+                    </div>
+                </div>
+
+                <div style={{ 
+                    marginTop: '0.5rem',
+                    color: project.color, 
+                    fontWeight: 700, 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '0.6rem',
+                    letterSpacing: '0.05em'
+                }}>
+                    {t('projects.open')} <Eye size={18} />
                 </div>
             </div>
         </motion.div>

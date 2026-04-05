@@ -1,4 +1,4 @@
-import { Globe, Target, ShoppingBag } from 'lucide-react';
+import { Globe, Target, ShoppingBag, CheckCircle2, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
@@ -10,21 +10,24 @@ const Services = () => {
         {
             icon: Globe,
             title: t('services.s1_title'),
-            problem: t('services.s1_problem'),
+            description: t('services.s1_problem'),
+            perfect: t('services.s1_perfect'),
             result: t('services.s1_result'),
             color: '#a78bfa'
         },
         {
             icon: Target,
             title: t('services.s2_title'),
-            problem: t('services.s2_problem'),
+            description: t('services.s2_problem'),
+            perfect: t('services.s2_perfect'),
             result: t('services.s2_result'),
             color: '#3b82f6'
         },
         {
             icon: ShoppingBag,
             title: t('services.s3_title'),
-            problem: t('services.s3_problem'),
+            description: t('services.s3_problem'),
+            perfect: t('services.s3_perfect'),
             result: t('services.s3_result'),
             color: '#8b5cf6'
         }
@@ -39,19 +42,31 @@ const Services = () => {
         }}>
             <div className="container">
                 <Reveal>
-                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                         <h2 style={{
-                            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                             fontWeight: 800,
-                            letterSpacing: '-0.03em',
-                            lineHeight: 1.1
+                            letterSpacing: '-0.04em',
+                            lineHeight: 1.1,
+                            marginBottom: '1rem'
                         }}>
-                            {t('services.title')} <span style={{ color: 'var(--accent-color)' }}>{t('services.titleAccent')}</span>
+                            {t('services.title')} <span style={{ 
+                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                             }}>{t('services.titleAccent')}</span>
                         </h2>
                     </div>
                 </Reveal>
 
-                <div className="projects-grid">
+                <div className="projects-grid" style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+                    gap: '2.5rem',
+                    justifyContent: 'center',
+                    maxWidth: '1200px',
+                    margin: '0 auto'
+                }}>
                     {services.map((service, index) => (
                         <Reveal 
                             key={index} 
@@ -59,53 +74,69 @@ const Services = () => {
                             direction={index === 0 ? 'left' : index === 1 ? 'up' : 'right'}
                         >
                             <motion.div 
-                                whileHover={{ y: -10 }}
+                                whileHover={{ y: -10, boxShadow: `0 20px 40px -20px ${service.color}33` }}
                                 className="glass-panel"
                                 style={{
-                                    padding: '3rem 2rem',
+                                    padding: '3rem 2.5rem',
                                     height: '100%',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    gap: '1.5rem',
+                                    gap: '1.25rem',
                                     border: '1px solid var(--border-color)',
                                     textAlign: 'left',
                                     position: 'relative',
-                                    overflow: 'hidden'
+                                    overflow: 'hidden',
+                                    background: 'rgba(255, 255, 255, 0.03)'
                                 }}
                             >
                                 <div style={{
-                                    width: '60px',
-                                    height: '60px',
-                                    borderRadius: '1rem',
-                                    backgroundColor: `rgba(167, 139, 250, 0.1)`,
+                                    width: '64px',
+                                    height: '64px',
+                                    borderRadius: '1.25rem',
+                                    backgroundColor: `${service.color}15`,
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     color: service.color,
-                                    marginBottom: '0.5rem'
+                                    marginBottom: '1rem'
                                 }}>
-                                    <service.icon size={32} />
+                                    <service.icon size={32} strokeWidth={2.5} />
                                 </div>
                                 
-                                <h3 style={{ fontSize: '1.6rem', fontWeight: 700 }}>{service.title}</h3>
+                                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.02em' }}>{service.title}</h3>
                                 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', fontStyle: 'italic' }}>
-                                        "{service.problem}"
-                                    </p>
-                                    <p style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.1rem' }}>
-                                        {service.result}
-                                    </p>
+                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '0.5rem' }}>
+                                    {service.description}
+                                </p>
+
+                                <div style={{ 
+                                    padding: '1.25rem', 
+                                    backgroundColor: 'rgba(255,255,255,0.03)', 
+                                    borderRadius: '1rem', 
+                                    border: '1px solid rgba(255,255,255,0.05)',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '1rem',
+                                    marginTop: 'auto'
+                                }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                                        <Users size={18} color={service.color} />
+                                        <span>{service.perfect}</span>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#fff', fontWeight: 600, fontSize: '1rem' }}>
+                                        <CheckCircle2 size={18} color="#10b981" />
+                                        <span>{service.result}</span>
+                                    </div>
                                 </div>
 
                                 {/* Abstract accent */}
                                 <div style={{
                                     position: 'absolute',
-                                    top: '-20px',
-                                    right: '-20px',
-                                    width: '100px',
-                                    height: '100px',
-                                    background: `radial-gradient(circle, ${service.color}22 0%, transparent 70%)`,
+                                    top: '-40px',
+                                    right: '-40px',
+                                    width: '120px',
+                                    height: '120px',
+                                    background: `radial-gradient(circle, ${service.color}15 0%, transparent 70%)`,
                                     zIndex: 0
                                 }} />
                             </motion.div>

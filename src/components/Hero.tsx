@@ -68,7 +68,7 @@ const Hero = () => {
                             }}>
                                 {t('hero.headlineFirst')}{' '}
                                 <span style={{
-                                    background: 'linear-gradient(to right, var(--accent-color), #3b82f6)',
+                                    background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
                                     display: 'inline-block'

@@ -23,12 +23,16 @@ const SocialProof = () => {
                 <Reveal>
                     <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                         <h2 style={{
-                            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                             fontWeight: 800,
-                            letterSpacing: '-0.03em',
+                            letterSpacing: '-0.04em',
                             lineHeight: 1.1
                         }}>
-                            {t('social.title')} <span style={{ color: 'var(--accent-color)' }}>{t('social.titleAccent')}</span>
+                            {t('social.title')} <span style={{ 
+                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                             }}>{t('social.titleAccent')}</span>
                         </h2>
                     </div>
                 </Reveal>

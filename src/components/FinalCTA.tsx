@@ -18,19 +18,20 @@ const FinalCTA = () => {
             minHeight: '100vh',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             padding: '6rem 2rem',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            textAlign: 'center'
         }}>
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+            <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
                 <div style={{
-                    maxWidth: '900px',
+                    maxWidth: '1000px',
                     margin: '0 auto',
-                    textAlign: 'center',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '2.5rem'
+                    gap: '3rem'
                 }}>
                     <Reveal>
                         <div style={{
@@ -38,31 +39,36 @@ const FinalCTA = () => {
                             alignItems: 'center',
                             gap: '0.75rem',
                             backgroundColor: 'rgba(167, 139, 250, 0.1)',
-                            color: 'var(--accent-color)',
+                            color: '#a78bfa',
                             padding: '0.5rem 1.25rem',
                             borderRadius: '2rem',
-                            fontSize: '0.85rem',
-                            fontWeight: 700,
-                            letterSpacing: '0.1em',
+                            fontSize: '0.9rem',
+                            fontWeight: 800,
+                            letterSpacing: '0.12em',
                             textTransform: 'uppercase'
                         }}>
-                            <Sparkles size={16} /> {t('cta_final.title')}
+                            <Sparkles size={18} /> {t('projects.titleAccent')}
                         </div>
                     </Reveal>
 
                     <Reveal direction="up" delay={0.1}>
                         <h2 style={{
-                            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-                            fontWeight: 800,
-                            letterSpacing: '-0.04em',
-                            lineHeight: 1.1,
-                            color: 'var(--text-primary)'
+                            fontSize: 'clamp(2.5rem, 6.5vw, 5rem)',
+                            fontWeight: 900,
+                            letterSpacing: '-0.05em',
+                            lineHeight: 1.05,
+                            color: 'var(--text-primary)',
+                            padding: '0 1rem'
                         }}>
                             {t('cta_final.title')} <br />
                             <span style={{ 
-                                background: 'linear-gradient(to right, var(--accent-color), #3b82f6)', 
+                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)', 
                                 WebkitBackgroundClip: 'text', 
-                                WebkitTextFillColor: 'transparent' 
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                                color: 'transparent',
+                                display: 'inline-block',
+                                paddingBottom: '0.1em' // Prevents clipping of descenders
                             }}>
                                 {t('cta_final.titleAccent')}
                             </span>
@@ -71,11 +77,12 @@ const FinalCTA = () => {
 
                     <Reveal delay={0.2}>
                         <p style={{
-                            fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                            fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
                             color: 'var(--text-secondary)',
-                            lineHeight: 1.5,
-                            maxWidth: '700px',
-                            margin: '0 auto'
+                            lineHeight: 1.45,
+                            maxWidth: '750px',
+                            margin: '0 auto',
+                            fontWeight: 500
                         }}>
                             {t('cta_final.text')}
                         </p>
@@ -84,40 +91,42 @@ const FinalCTA = () => {
                     <Reveal delay={0.4}>
                         <motion.button
                             onClick={scrollToContact}
-                            whileHover={{ scale: 1.05, boxShadow: 'var(--accent-glow)' }}
+                            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(167, 139, 250, 0.5)' }}
                             whileTap={{ scale: 0.95 }}
                             style={{
-                                backgroundColor: 'var(--accent-color)',
+                                backgroundColor: '#a78bfa',
                                 color: 'white',
-                                padding: '1.25rem 3rem',
-                                borderRadius: '3rem',
-                                fontSize: '1.2rem',
-                                fontWeight: 800,
+                                padding: '1.5rem 3.5rem',
+                                borderRadius: '4rem',
+                                fontSize: '1.3rem',
+                                fontWeight: 900,
                                 border: 'none',
                                 cursor: 'pointer',
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '0.75rem',
+                                gap: '1rem',
                                 textTransform: 'uppercase',
-                                letterSpacing: '0.1em'
+                                letterSpacing: '0.08em',
+                                boxShadow: '0 15px 30px -10px rgba(167, 139, 250, 0.4)'
                             }}
                         >
-                            {t('cta_final.button')} <ArrowRight size={22} />
+                            {t('cta_final.button')} <ArrowRight size={26} strokeWidth={3} />
                         </motion.button>
                     </Reveal>
                 </div>
             </div>
 
-            {/* Abstract backgrounds */}
+            {/* Glowing background highlights */}
             <div style={{
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '600px',
-                height: '600px',
-                background: 'radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%)',
-                zIndex: 0
+                width: '800px',
+                height: '800px',
+                background: 'radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 70%)',
+                zIndex: 0,
+                pointerEvents: 'none'
             }} />
         </section>
     );

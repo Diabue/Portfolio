@@ -153,7 +153,7 @@ const Contact = () => {
                         margin: '5rem auto 0'
                     }}>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 500 }}>
-                            🚀 <span style={{ color: '#fff' }}>Szybki czas reakcji:</span> zazwyczaj odpisuję <span style={{ color: 'var(--accent-color)' }}>w ciągu 2 godzin</span>.
+                            🚀 <span style={{ color: '#fff' }}>Gwarancja kontaktu:</span> zazwyczaj odpowiadam <span style={{ color: '#a78bfa' }}>w ciągu kilku godzin</span>.
                         </p>
                     </div>
                 </Reveal>
