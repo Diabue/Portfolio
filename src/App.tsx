@@ -1,33 +1,56 @@
+import { useEffect, useState } from 'react';
 import Hero from './components/Hero';
-import { useTranslation } from 'react-i18next';
-import Career from './components/Career';
-import Skills from './components/Skills';
+import Services from './components/Services';
+import WhyMe from './components/WhyMe';
 import Projects from './components/Projects';
+import Process from './components/Process';
+import SocialProof from './components/SocialProof';
+import FinalCTA from './components/FinalCTA';
+import Contact from './components/Contact';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import ParticlesBackground from './components/ParticlesBackground';
 import './i18n';
 import './App.css';
 
 function App() {
-  const { t } = useTranslation();
-  return (
-    <div className="app">
-      <LanguageSwitcher />
-      <Hero />
-      <Career />
-      <Skills />
-      <Projects />
+  const [isMobile, setIsMobile] = useState(false);
 
-      <footer style={{
-        padding: '3rem 2rem',
-        textAlign: 'center',
-        color: 'var(--text-secondary)',
-        borderTop: '1px solid var(--border-color)',
-        marginTop: 'auto',
-        background: 'rgba(15, 23, 42, 0.5)',
-        backdropFilter: 'blur(10px)'
-      }}>
-        <p style={{ fontSize: '0.9rem' }}>&copy; {new Date().getFullYear()} Max. {t('footer.rights')}</p>
-      </footer>
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return (
+    <div className={`app ${isMobile ? 'mobile' : ''}`}>
+      <ParticlesBackground />
+      <LanguageSwitcher />
+
+      <main className="content-wrapper">
+        <Hero />
+        <Services />
+        <WhyMe />
+        <Projects />
+        <Process />
+        <SocialProof />
+        <FinalCTA />
+        <Contact />
+      </main>
+
+      {!isMobile && (
+        <footer style={{
+          position: 'fixed',
+          bottom: '1.5rem',
+          left: '2rem',
+          color: 'var(--text-secondary)',
+          fontSize: '0.75rem',
+          zIndex: 1000,
+          opacity: 0.5
+        }}>
+          &copy; {new Date().getFullYear()} MKS. Wszystkie prawa zastrzeżone.
+        </footer>
+      )}
     </div>
   );
 }

@@ -25,70 +25,77 @@ const Career = () => {
             company: t('career.company_gk'),
             period: t('career.period_gk'),
             description: t('career.desc_gk'),
-            current: false
+            current: true
         }
     ];
 
     return (
-        <section className="section" style={{ position: 'relative' }}>
+        <section id="career">
             <div className="container">
-                <h2 style={{
-                    fontSize: '2.5rem',
-                    marginBottom: '3rem',
-                    textAlign: 'center'
-                }}>
-                    {t('career.title')}
-                </h2>
+                <Reveal>
+                    <h2 style={{
+                        fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                        marginBottom: '4rem',
+                        textAlign: 'center'
+                    }}>
+                        {t('career.title')}
+                    </h2>
+                </Reveal>
 
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
                     {experiences.map((exp, index) => (
-                        <Reveal key={index} direction="right" delay={index * 0.2} width="100%">
+                        <Reveal key={index} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 0.1}>
                             <div style={{
                                 display: 'flex',
-                                gap: '2rem',
-                                marginBottom: '3rem',
+                                gap: '2.5rem',
+                                marginBottom: '4rem',
                                 position: 'relative'
                             }}>
-                                {/* Timeline Line (Visual only) */}
-                                {index !== experiences.length - 1 && (
-                                    <div style={{
-                                        position: 'absolute',
-                                        left: '24px',
-                                        top: '50px',
-                                        bottom: '-50px',
-                                        width: '2px',
-                                        background: '#333'
-                                    }} />
-                                )}
-
+                                {/* Connection Dot */}
                                 <div style={{
-                                    width: '50px',
-                                    height: '50px',
+                                    width: '60px',
+                                    height: '60px',
                                     borderRadius: '50%',
-                                    background: exp.current ? 'linear-gradient(135deg, var(--accent-color), #3b82f6)' : 'var(--surface-color)',
+                                    background: exp.current ? 'linear-gradient(135deg, var(--accent-color), #3b82f6)' : '#1e293b',
                                     border: '2px solid var(--border-color)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     flexShrink: 0,
-                                    zIndex: 1,
-                                    boxShadow: exp.current ? 'var(--accent-glow)' : 'none'
+                                    zIndex: 2,
+                                    boxShadow: exp.current ? 'var(--accent-glow)' : 'none',
+                                    marginTop: '1rem'
                                 }}>
-                                    <Briefcase size={20} color={exp.current ? '#fff' : 'var(--text-secondary)'} />
+                                    <Briefcase size={24} color={exp.current ? '#fff' : 'var(--text-secondary)'} />
                                 </div>
 
-                                <div style={{
-                                    background: 'var(--surface-color)',
-                                    border: '1px solid var(--border-color)',
-                                    padding: '1.5rem',
-                                    borderRadius: '1rem',
-                                    flex: 1
+                                <div className="glass-panel" style={{
+                                    padding: '2rem',
+                                    flex: 1,
+                                    position: 'relative'
                                 }}>
-                                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem', color: '#fff' }}>{exp.role}</h3>
+                                    {exp.current && (
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '1.5rem',
+                                            right: '1.5rem',
+                                            padding: '0.25rem 0.75rem',
+                                            borderRadius: '2rem',
+                                            background: 'rgba(167, 139, 250, 0.15)',
+                                            color: 'var(--accent-color)',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 600,
+                                            border: '1px solid rgba(167, 139, 250, 0.3)'
+                                        }}>
+                                            PRESENT
+                                        </div>
+                                    )}
+
+                                    <h3 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', color: '#fff' }}>{exp.role}</h3>
                                     <h4 style={{
                                         color: 'var(--accent-color)',
-                                        marginBottom: '0.5rem',
-                                        fontSize: '1.1rem',
+                                        marginBottom: '1rem',
+                                        fontSize: '1.2rem',
                                         fontWeight: 600
                                     }}>
                                         {exp.company}
@@ -98,13 +105,14 @@ const Career = () => {
                                         alignItems: 'center',
                                         gap: '0.5rem',
                                         color: 'var(--text-secondary)',
-                                        marginBottom: '1rem',
-                                        fontSize: '0.9rem'
+                                        marginBottom: '1.5rem',
+                                        fontSize: '0.95rem',
+                                        opacity: 0.8
                                     }}>
-                                        <Calendar size={16} />
+                                        <Calendar size={18} />
                                         <span>{exp.period}</span>
                                     </div>
-                                    <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                                    <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '1rem' }}>
                                         {exp.description}
                                     </p>
                                 </div>
@@ -118,3 +126,4 @@ const Career = () => {
 };
 
 export default Career;
+

@@ -1,149 +1,170 @@
-import { Mail, Github, Linkedin } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import myPhoto from '../assets/fot.jpg';
+import { motion, useReducedMotion } from 'framer-motion';
+import mksLogo from '../assets/logo.svg';
 import { Reveal } from './Reveal';
 
 const Hero = () => {
     const { t } = useTranslation();
+    const prefersReducedMotion = useReducedMotion();
+
+    const scrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
-        <section className="section hero" style={{
-            minHeight: '100vh',
+        <section id="hero" style={{
+            height: '100vh',
+            minHeight: '600px',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             position: 'relative',
-            overflow: 'hidden'
+            padding: 0,
+            scrollSnapAlign: 'start'
         }}>
-            {/* Background Elements */}
-            <div style={{
-                position: 'absolute',
-                top: '-20%',
-                left: '-10%',
-                width: '50vw',
-                height: '50vw',
-                background: 'radial-gradient(circle, rgba(167,139,250,0.2) 0%, transparent 70%)',
-                filter: 'blur(60px)',
-                zIndex: 0,
-                animation: 'float 10s infinite ease-in-out'
-            }} />
-            <div style={{
-                position: 'absolute',
-                bottom: '-20%',
-                right: '-10%',
-                width: '60vw',
-                height: '60vw',
-                background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)',
-                filter: 'blur(60px)',
-                zIndex: 0,
-                animation: 'float 15s infinite ease-in-out reverse'
-            }} />
-
-            <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '4rem' }}>
+            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     textAlign: 'center',
-                    gap: '2.5rem'
+                    gap: '2rem'
                 }}>
-                    {/* Profile Image with Glow */}
+                    {/* MKS Logo */}
                     <Reveal>
-                        <div style={{
-                            width: '180px',
-                            height: '180px',
-                            borderRadius: '50%',
-                            overflow: 'hidden',
-                            border: '3px solid var(--accent-color)',
-                            boxShadow: 'var(--accent-glow)',
-                            position: 'relative'
-                        }}>
+                        <motion.div 
+                            animate={prefersReducedMotion ? {} : { y: [0, -5, 0], opacity: [0.9, 1, 0.9] }}
+                            transition={{ duration: 4, repeat: Infinity, repeatType: 'mirror', ease: "easeInOut" }}
+                            style={{
+                                width: '120px',
+                                height: 'auto',
+                                marginBottom: '1rem'
+                            }}
+                        >
                             <img
-                                src={myPhoto}
-                                alt="Max"
+                                src={mksLogo}
+                                alt="MKS Web Dev"
                                 style={{
                                     width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover'
+                                    filter: 'drop-shadow(0 0 20px rgba(167, 139, 250, 0.4))'
                                 }}
                             />
-                        </div>
+                        </motion.div>
                     </Reveal>
 
-                    <div style={{ maxWidth: '800px' }}>
-                        <h1 style={{
-                            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-                            marginBottom: '1rem',
-                            fontWeight: 700,
-                            letterSpacing: '-0.02em',
-                            lineHeight: 1.1
-                        }}>
-                            {t('hero.greeting')} <span style={{
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent'
-                            }}>Max</span>
-                        </h1>
-                        <p style={{
-                            fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
-                            color: 'var(--text-secondary)',
-                            maxWidth: '600px',
-                            margin: '0 auto',
-                            fontWeight: 300
-                        }}>
-                            {t('hero.role')}
-                        </p>
+                    <div style={{ maxWidth: '900px' }}>
+                        <Reveal>
+                            <h1 style={{
+                                fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
+                                marginBottom: '1.5rem',
+                                fontWeight: 800,
+                                letterSpacing: '-0.04em',
+                                lineHeight: 1.1,
+                                color: 'var(--text-primary)'
+                            }}>
+                                {t('hero.headlineFirst')}{' '}
+                                <span style={{
+                                    background: 'linear-gradient(to right, var(--accent-color), #3b82f6)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    display: 'inline-block'
+                                }}>
+                                    {t('hero.headlineAccent')}
+                                </span><br />
+                                {t('hero.headlineLast')}
+                            </h1>
+                        </Reveal>
+                        <Reveal delay={0.2}>
+                            <p style={{
+                                fontSize: 'clamp(1rem, 2vw, 1.4rem)',
+                                color: 'var(--text-secondary)',
+                                maxWidth: '750px',
+                                margin: '0 auto',
+                                fontWeight: 400,
+                                lineHeight: 1.5,
+                                letterSpacing: '0.01em'
+                            }}>
+                                {t('hero.subheadline')}
+                            </p>
+                        </Reveal>
                     </div>
 
                     <Reveal delay={0.4}>
-                        <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
-                            {[
-                                { icon: Github, href: "https://github.com/Diabue" },
-                                { icon: Linkedin, href: "#" },
-                                { icon: Mail, href: "mailto:maksymilian.kasprowicz@gmail.com" }
-                            ].map((item, i) => (
-                                <a
-                                    key={i}
-                                    href={item.href}
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        padding: '1rem',
-                                        borderRadius: '1rem',
-                                        background: 'var(--surface-color)',
-                                        border: '1px solid var(--border-color)',
-                                        backdropFilter: 'blur(10px)',
-                                        transition: 'all 0.3s ease'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.borderColor = 'var(--accent-color)';
-                                        e.currentTarget.style.transform = 'translateY(-5px)';
-                                        e.currentTarget.style.boxShadow = 'var(--accent-glow)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.borderColor = 'var(--border-color)';
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.boxShadow = 'none';
-                                    }}
-                                >
-                                    <item.icon size={28} />
-                                </a>
-                            ))}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginTop: '1.5rem', justifyContent: 'center' }}>
+                            <motion.button
+                                onClick={scrollToContact}
+                                whileHover={{ scale: 1.05, boxShadow: 'var(--accent-glow)' }}
+                                whileTap={{ scale: 0.95 }}
+                                style={{
+                                    backgroundColor: 'var(--accent-color)',
+                                    color: 'white',
+                                    padding: '1.2rem 2.5rem',
+                                    borderRadius: '3rem',
+                                    fontSize: '1.1rem',
+                                    fontWeight: 700,
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em'
+                                }}
+                            >
+                                {t('hero.cta')}
+                            </motion.button>
+                            
+                            <motion.div
+                                className="glass-panel"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.75rem',
+                                    padding: '1.1rem 2rem',
+                                    borderRadius: '3rem',
+                                    fontSize: '0.9rem',
+                                    color: 'var(--text-secondary)',
+                                    border: '1px solid var(--border-color)'
+                                }}
+                            >
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981', boxShadow: '0 0 10px #10b981' }} />
+                                {t('hero.trust')}
+                            </motion.div>
                         </div>
                     </Reveal>
                 </div>
             </div>
 
-            <style>
-                {`
-                @keyframes float {
-                    0% { transform: translate(0, 0); }
-                    50% { transform: translate(20px, -20px); }
-                    100% { transform: translate(0, 0); }
-                }
-                `}
-            </style>
-        </section >
+            {/* Scroll Down Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                style={{
+                    position: 'absolute',
+                    bottom: '2rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    color: 'var(--text-secondary)',
+                    fontSize: '0.8rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    opacity: 0.6
+                }}
+            >
+                <motion.div
+                    animate={prefersReducedMotion ? { opacity: 1 } : { y: [0, 8, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatType: 'mirror' }}
+                >
+                    <ChevronDown size={24} />
+                </motion.div>
+            </motion.div>
+        </section>
     );
 };
 
