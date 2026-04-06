@@ -102,12 +102,12 @@ i18n
                     social: {
                         title: "Wiarygodne",
                         titleAccent: "Opinie",
-                        t1_author: "Marek, Właściciel Siłowni",
-                        t1_text: "Strona wygląda niesamowicie i zaczęliśmy odbierać więcej telefonów już po kilku dniach.",
-                        t2_author: "Anna, Studio Beauty",
-                        t2_text: "W końcu mam stronę, której nie muszę się wstydzić przed klientkami premium.",
-                        t3_author: "Tomasz, Mechanik",
-                        t3_text: "Szybko, konkretnie i bez problemu. Strona działa idealnie na telefonie."
+                        t1_author: "Marek, Sala Legend",
+                        t1_text: "System rezerwacji i nowa strona to był strzał w dziesiątkę. Oszczędzamy mnóstwo czasu, a klienci chwalą prostotę płatności.",
+                        t2_author: "Kamil, FinePPF",
+                        t2_text: "Dzięki nowemu landing page'owi w końcu docieramy do klientów premium. Strona idealnie oddaje jakość naszych usług.",
+                        t3_author: "Tomasz, Usługi Lokalne",
+                        t3_text: "Szybko, konkretnie i bez problemu. Strona działa idealnie na telefonie i faktycznie dzwoni więcej osób."
                     },
                     cta_final: {
                         title: "Chcesz Strony, Która",
@@ -218,12 +218,12 @@ i18n
                     social: {
                         title: "Believable",
                         titleAccent: "Reviews",
-                        t1_author: "Mark, Gym Owner",
-                        t1_text: "The website looks amazing and we started getting more calls within days.",
-                        t2_author: "Anna, Beauty Studio",
-                        t2_text: "Finally, I have a site I don't have to be ashamed of in front of premium clients.",
-                        t3_author: "Thomas, Mechanic",
-                        t3_text: "Fast, solid, and no problems. Site works perfectly on mobile."
+                        t1_author: "Mark, Sala Legend",
+                        t1_text: "The booking system and new site was a game changer. We save ton of time, and clients praise the simple checkout.",
+                        t2_author: "Kamil, FinePPF",
+                        t2_text: "Thanks to the new landing page, we finally reach premium clients. It perfectly reflects our quality of service.",
+                        t3_author: "Thomas, Local Services",
+                        t3_text: "Fast, solid, and no problems. Site works perfectly on mobile and more people are calling."
                     },
                     cta_final: {
                         title: "Want a Website That",
