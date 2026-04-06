@@ -1,4 +1,4 @@
-import { ArrowRight, MessageSquare, Phone } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
