@@ -79,12 +79,13 @@ const FinalCTA = () => {
 
                     <Reveal delay={0.2}>
                         <p style={{
-                            fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
-                            color: 'var(--text-secondary)',
+                            fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                            color: '#fff',
                             lineHeight: 1.45,
                             maxWidth: '750px',
                             margin: '0 auto',
-                            fontWeight: 500
+                            fontWeight: 700,
+                            opacity: 0.95
                         }}>
                             {t('cta_final.text')}
                         </p>

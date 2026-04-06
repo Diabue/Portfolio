@@ -97,22 +97,46 @@ const Hero = () => {
                             </motion.button>
 
                             <div style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                color: 'white', 
-                                fontWeight: 700,
-                                fontSize: isMobile ? '0.9rem' : '1.1rem'
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: isMobile ? 'center' : 'flex-start',
+                                gap: '0.5rem'
                             }}>
                                 <div style={{ 
                                     display: 'flex', 
                                     alignItems: 'center', 
-                                    gap: '0.5rem',
-                                    color: 'var(--text-secondary)'
+                                    gap: '1rem', 
+                                    color: 'white', 
+                                    fontWeight: 700,
+                                    fontSize: isMobile ? '0.9rem' : '1.1rem'
                                 }}>
-                                    <Phone size={isMobile ? 16 : 20} color="var(--accent-color)" />
-                                    <span>{t('hero.trust')}</span>
+                                    <div style={{ 
+                                        display: 'flex', 
+                                        alignItems: 'center', 
+                                        gap: '0.5rem',
+                                        color: 'var(--text-secondary)'
+                                    }}>
+                                        <Phone size={isMobile ? 16 : 20} color="var(--accent-color)" />
+                                        <span>{t('hero.trust')}</span>
+                                    </div>
                                 </div>
+                                <p style={{ 
+                                    fontSize: isMobile ? '0.85rem' : '1rem', 
+                                    color: '#fff', 
+                                    fontWeight: 600,
+                                    opacity: 0.9,
+                                    margin: 0
+                                }}>
+                                    {t('hero.priceLine')}
+                                </p>
+                                <p style={{ 
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem', 
+                                    color: 'var(--text-secondary)',
+                                    margin: 0,
+                                    fontWeight: 500
+                                }}>
+                                    {t('hero.advancedLine')}
+                                </p>
                             </div>
                         </div>
                     </Reveal>

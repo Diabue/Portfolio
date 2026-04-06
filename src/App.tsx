@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import WhyMe from './components/WhyMe';
 import Projects from './components/Projects';
+import Pricing from './components/Pricing';
 import Process from './components/Process';
 import SocialProof from './components/SocialProof';
 import FinalCTA from './components/FinalCTA';
@@ -32,6 +33,7 @@ function App() {
         <Services />
         <WhyMe />
         <Projects />
+        <Pricing />
         <Process />
         <SocialProof />
         <FinalCTA />

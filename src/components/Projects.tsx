@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ExternalLink, ArrowLeft, Eye, TrendingUp, AlertCircle, Lightbulb, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Eye, TrendingUp, DollarSign, ListChecks } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Reveal } from './Reveal';
@@ -193,20 +193,16 @@ const ProjectCard = ({ project, idx, isHovered, onHover, onClick, t, isMobile }:
                 </div>
             </div>
 
-            <div style={{ padding: isMobile ? '1.5rem' : '2rem', display: 'flex', flexDirection: 'column', gap: isMobile ? '1rem' : '1.5rem' }}>
+            <div style={{ padding: isMobile ? '1.5rem' : '2rem', display: 'flex', flexDirection: 'column', gap: isMobile ? '1rem' : '1.25rem' }}>
                 <h3 style={{ fontSize: isMobile ? '1.4rem' : '1.75rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' }}>{project.title}</h3>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
-                        <AlertCircle size={isMobile ? 16 : 18} color="#ef4444" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <ListChecks size={isMobile ? 16 : 18} color="var(--accent-color)" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
                         <p style={{ color: 'var(--text-secondary)', fontSize: isMobile ? '0.85rem' : '0.95rem', margin: 0 }}>{project.problem}</p>
                     </div>
                     <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
-                        <Lightbulb size={isMobile ? 16 : 18} color="#eab308" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
-                        <p style={{ color: 'var(--text-secondary)', fontSize: isMobile ? '0.85rem' : '0.95rem', margin: 0 }}>{project.solution}</p>
-                    </div>
-                    <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
-                        <CheckCircle2 size={isMobile ? 16 : 18} color="#10b981" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <DollarSign size={isMobile ? 16 : 18} color="#10b981" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
                         <p style={{ color: '#fff', fontSize: isMobile ? '0.9rem' : '1rem', fontWeight: 700, margin: 0 }}>{project.result}</p>
                     </div>
                 </div>
