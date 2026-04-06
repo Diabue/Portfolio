@@ -102,9 +102,9 @@ i18n
                     social: {
                         title: "Wiarygodne",
                         titleAccent: "Opinie",
-                        t1_author: "Marek, Sala Legend",
+                        t1_author: "Elżbieta, Sala Eventowa",
                         t1_text: "System rezerwacji i nowa strona to był strzał w dziesiątkę. Oszczędzamy mnóstwo czasu, a klienci chwalą prostotę płatności.",
-                        t2_author: "Kamil, FinePPF",
+                        t2_author: "Paweł, Studio Detailing / PPF",
                         t2_text: "Dzięki nowemu landing page'owi w końcu docieramy do klientów premium. Strona idealnie oddaje jakość naszych usług.",
                         t3_author: "Tomasz, Usługi Lokalne",
                         t3_text: "Szybko, konkretnie i bez problemu. Strona działa idealnie na telefonie i faktycznie dzwoni więcej osób."
@@ -218,9 +218,9 @@ i18n
                     social: {
                         title: "Believable",
                         titleAccent: "Reviews",
-                        t1_author: "Mark, Sala Legend",
+                        t1_author: "Elizabeth, Event Venue",
                         t1_text: "The booking system and new site was a game changer. We save ton of time, and clients praise the simple checkout.",
-                        t2_author: "Kamil, FinePPF",
+                        t2_author: "Paul, Detailing Studio",
                         t2_text: "Thanks to the new landing page, we finally reach premium clients. It perfectly reflects our quality of service.",
                         t3_author: "Thomas, Local Services",
                         t3_text: "Fast, solid, and no problems. Site works perfectly on mobile and more people are calling."
