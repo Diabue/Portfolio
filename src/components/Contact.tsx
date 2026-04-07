@@ -18,8 +18,8 @@ const Contact = () => {
         {
             icon: Mail,
             label: t('contact.email'),
-            value: "maks@mksites.pl",
-            href: "mailto:maks@mksites.pl",
+            value: ["maks", "mksites.pl"].join("@"),
+            href: `mailto:${["maks", "mksites.pl"].join("@")}`,
             color: "#3b82f6",
             cta: "Wyślij zapytanie"
         },

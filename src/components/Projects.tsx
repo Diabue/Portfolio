@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Reveal } from './Reveal';
 import { useMediaQuery } from '../hooks/useMediaQuery';
-import project3Img from '../assets/project3.png';
-import project4Img from '../assets/project4.png';
-import projekt5Img from '../assets/projekt5.png';
+import project3Img from '../assets/project3.webp';
+import project4Img from '../assets/project4.webp';
+import projekt5Img from '../assets/projekt5.webp';
 
 const Projects = () => {
     const { t } = useTranslation();

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Nie znaleziono strony | MKSites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #020617;
+            --text-primary: #f8fafc;
+            --accent-color: #a78bfa;
+            --font-family: 'Outfit', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 8rem;
+            margin: 0;
+            background: linear-gradient(to right, #a78bfa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        p {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        a {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 3rem;
+            text-decoration: none;
+            font-weight: 800;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(167, 139, 250, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <p>Ups! Wygląda na to, że ta strona nie istnieje.</p>
+    <a href="/">Wróć do strony głównej</a>
+</body>
+</html>
