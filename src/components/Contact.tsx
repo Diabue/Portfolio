@@ -285,7 +285,7 @@ const Contact = () => {
                                             textAlign: 'center'
                                         }}
                                     >
-                                        {i18n.language === 'pl' ? 'Główny cel' : 'Main Goal'}
+                                        {i18n.language === 'pl' ? 'Zdecydowany?' : 'Ready to Start?'}
                                     </button>
                                     <button
                                         type="button"
