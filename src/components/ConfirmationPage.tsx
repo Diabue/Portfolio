@@ -4,18 +4,51 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const ThankYouPage = () => {
+interface Props {
+    type: 'contact' | 'request' | 'inquiry';
+}
+
+const ConfirmationPage = ({ type }: Props) => {
     const { t } = useTranslation();
 
-    // Wywołanie zdarzenia w Google Analytics/Google Ads dla aplikacji Single Page (SPA)
+    const config = {
+        contact: {
+            titleKey: 'confirm.contact.title',
+            titleDefault: 'Wiadomość Odebrana!',
+            descKey: 'confirm.contact.desc',
+            descDefault: 'Otrzymaliśmy Twoją wiadomość. Skontaktujemy się z Tobą w ciągu najbliższych kilku godzin.',
+            path: '/contact-received',
+            analyticsTitle: 'Kontakt Odebrany | MKSites',
+        },
+        request: {
+            titleKey: 'confirm.request.title',
+            titleDefault: 'Zgłoszenie Odebrane!',
+            descKey: 'confirm.request.desc',
+            descDefault: 'Twoja prośba o wycenę została przesłana. Przeanalizujemy szczegóły i wrócimy z ofertą.',
+            path: '/request-received',
+            analyticsTitle: 'Zgłoszenie Odebrane | MKSites',
+        },
+        inquiry: {
+            titleKey: 'confirm.inquiry.title',
+            titleDefault: 'Zapytanie Przesłane!',
+            descKey: 'confirm.inquiry.desc',
+            descDefault: 'Dziękujemy za wypełnienie briefu projektowego. Skontaktujemy się w celu omówienia szczegółów realizacji.',
+            path: '/inquiry-received',
+            analyticsTitle: 'Zapytanie Odebrane | MKSites',
+        }
+    };
+
+    const current = config[type];
+
+    // Trigger Google Analytics/Google Ads page view conversion
     useEffect(() => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
             (window as any).gtag('event', 'page_view', {
-                page_path: '/thank-you',
-                page_title: 'Dziękujemy za kontakt | MKSites',
+                page_path: current.path,
+                page_title: current.analyticsTitle,
             });
         }
-    }, []);
+    }, [type]);
 
     return (
         <section style={{
@@ -38,7 +71,7 @@ const ThankYouPage = () => {
                 alignItems: 'center',
                 gap: '2rem',
             }}>
-                {/* Checkmark Animation */}
+                {/* Icon Animation */}
                 <motion.div
                     initial={{ scale: 0, rotate: -45 }}
                     animate={{ scale: 1, rotate: 0 }}
@@ -61,7 +94,7 @@ const ThankYouPage = () => {
                 <div>
                     <h1 style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                        fontSize: 'clamp(2.3rem, 5vw, 3.5rem)',
                         fontWeight: 900,
                         letterSpacing: '-0.02em',
                         lineHeight: 1.0,
@@ -69,7 +102,7 @@ const ThankYouPage = () => {
                         marginBottom: '1.5rem',
                         color: 'var(--text-primary)',
                     }}>
-                        {t('thankyou.title', 'DZIĘKUJEMY ZA KONTAKT!')}
+                        {t(current.titleKey, current.titleDefault)}
                     </h1>
                     <p style={{
                         fontSize: '1.15rem',
@@ -78,7 +111,7 @@ const ThankYouPage = () => {
                         fontFamily: 'var(--font-body)',
                         margin: 0,
                     }}>
-                        {t('thankyou.subtitle', 'Otrzymaliśmy Twoją wiadomość. Odpowiemy na nią w ciągu najbliższych kilku godzin.')}
+                        {t(current.descKey, current.descDefault)}
                     </p>
                 </div>
 
@@ -105,11 +138,11 @@ const ThankYouPage = () => {
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-dark-section)'}
                 >
                     <ArrowLeft size={16} />
-                    {t('thankyou.button', 'Wróć do strony głównej')}
+                    {t('confirm.back_button', 'Wróć do strony głównej')}
                 </Link>
             </div>
         </section>
     );
 };
 
-export default ThankYouPage;
+export default ConfirmationPage;

@@ -10,7 +10,8 @@ import Process from './components/Process';
 import SocialProof from './components/SocialProof';
 import FinalCTA from './components/FinalCTA';
 import Contact from './components/Contact';
-import ThankYouPage from './components/ThankYouPage';
+import ConfirmationPage from './components/ConfirmationPage';
+import InquiryPage from './components/InquiryPage';
 import './i18n';
 import './App.css';
 
@@ -58,7 +59,10 @@ function App() {
               )}
             </>
           } />
-          <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/contact-received" element={<ConfirmationPage type="contact" />} />
+          <Route path="/request-received" element={<ConfirmationPage type="request" />} />
+          <Route path="/inquiry-received" element={<ConfirmationPage type="inquiry" />} />
+          <Route path="/inquiry" element={<InquiryPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

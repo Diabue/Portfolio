@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Phone, Mail, Github, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Reveal } from './Reveal';
@@ -123,6 +123,14 @@ const Contact = () => {
                     <Reveal delay={0.1}>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto', lineHeight: 1.5 }}>
                             {t('contact.subtitle')}
+                        </p>
+                    </Reveal>
+                    <Reveal delay={0.15}>
+                        <p style={{ marginTop: '1.5rem', fontSize: '14px', fontFamily: 'var(--font-body)', fontWeight: 600 }}>
+                            {i18n.language === 'pl' ? 'Potrzebujesz dokładnej wyceny? ' : 'Need a precise quote? '}
+                            <Link to="/inquiry" style={{ color: 'var(--accent-red)', textDecoration: 'underline' }}>
+                                {i18n.language === 'pl' ? 'Wypełnij krótki brief projektowy' : 'Fill out a quick project brief'}
+                            </Link>
                         </p>
                     </Reveal>
                 </div>
