@@ -12,7 +12,11 @@ const Contact = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [projectType, setProjectType] = useState('website');
+    const [budget, setBudget] = useState('1500-3000');
     const [message, setMessage] = useState('');
+    const [activeTab, setActiveTab] = useState<'brief' | 'quick'>('brief');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
 
@@ -30,7 +34,17 @@ const Contact = () => {
             return;
         }
 
-        const formData = {
+        const formData = activeTab === 'brief' ? {
+            access_key: accessKey,
+            name,
+            email,
+            phone,
+            project_type: projectType,
+            budget,
+            description: message,
+            subject: `📋 NOWE ZAPYTANIE OFERTOWE od ${name} (${email}) - MKSITES`,
+            from_name: "MKSITES Inquiry Planner",
+        } : {
             access_key: accessKey,
             name,
             email,
@@ -54,9 +68,10 @@ const Contact = () => {
                 setSubmitStatus('success');
                 setName('');
                 setEmail('');
+                setPhone('');
                 setMessage('');
                 setTimeout(() => {
-                    navigate('/thank-you');
+                    navigate(activeTab === 'brief' ? '/inquiry-received' : '/contact-received');
                 }, 1500);
             } else {
                 setSubmitStatus('error');
@@ -244,6 +259,57 @@ const Contact = () => {
                                 height: '100%',
                                 boxSizing: 'border-box'
                             }}>
+                                {/* Tab Switcher buttons at the top of the form box */}
+                                <div style={{
+                                    display: 'flex',
+                                    gap: '8px',
+                                    marginBottom: '8px',
+                                    width: '100%'
+                                }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => { setActiveTab('brief'); setSubmitStatus(null); }}
+                                        style={{
+                                            flex: 1,
+                                            padding: '10px 12px',
+                                            border: '1px solid var(--border-secondary)',
+                                            backgroundColor: activeTab === 'brief' ? 'var(--bg-dark-section)' : '#FFFFFF',
+                                            color: activeTab === 'brief' ? '#FFFFFF' : 'var(--text-primary)',
+                                            fontFamily: 'var(--font-body)',
+                                            fontWeight: 700,
+                                            fontSize: '13px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.15s ease',
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        {i18n.language === 'pl' ? 'Główny cel' : 'Main Goal'}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => { setActiveTab('quick'); setSubmitStatus(null); }}
+                                        style={{
+                                            flex: 1,
+                                            padding: '10px 12px',
+                                            border: '1px solid var(--border-secondary)',
+                                            backgroundColor: activeTab === 'quick' ? 'var(--bg-dark-section)' : '#FFFFFF',
+                                            color: activeTab === 'quick' ? '#FFFFFF' : 'var(--text-primary)',
+                                            fontFamily: 'var(--font-body)',
+                                            fontWeight: 700,
+                                            fontSize: '13px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.15s ease',
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        {i18n.language === 'pl' ? 'Pytania' : 'Questions'}
+                                    </button>
+                                </div>
+
                                 {submitStatus === 'success' && (
                                     <div style={{
                                         backgroundColor: '#10B981',
@@ -257,7 +323,7 @@ const Contact = () => {
                                         textAlign: 'center',
                                         marginBottom: '10px'
                                     }}>
-                                        {t('contact.success')}
+                                        {activeTab === 'brief' ? (i18n.language === 'pl' ? 'Zapytanie zostało wysłane pomyślnie!' : 'Inquiry sent successfully!') : t('contact.success')}
                                     </div>
                                 )}
                                 {submitStatus === 'error' && (
@@ -273,9 +339,11 @@ const Contact = () => {
                                         textAlign: 'center',
                                         marginBottom: '10px'
                                     }}>
-                                        {t('contact.error')}
+                                        {activeTab === 'brief' ? (i18n.language === 'pl' ? 'Wysyłanie briefu nie powiodło się.' : 'Brief submission failed.') : t('contact.error')}
                                     </div>
                                 )}
+
+                                {/* Common fields: Name and Email */}
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
                                     <label htmlFor="name" style={{
                                         fontFamily: 'var(--font-display)',
@@ -284,29 +352,22 @@ const Contact = () => {
                                         color: 'var(--text-secondary)',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em'
-                                    }}>{t('contact.name')}</label>
+                                    }}>
+                                        {activeTab === 'brief' ? (i18n.language === 'pl' ? 'Imię i Nazwisko / Firma' : 'Name / Company') : t('contact.name')}
+                                    </label>
                                     <input
                                         type="text"
                                         id="name"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         required
-                                        placeholder={t('contact.name')}
-                                        style={{
-                                            backgroundColor: '#F5F5F5',
-                                            border: '1px solid var(--border-secondary)',
-                                            borderRadius: '8px',
-                                            padding: '12px 16px',
-                                            fontSize: '16px',
-                                            fontFamily: 'var(--font-body)',
-                                            color: 'var(--text-primary)',
-                                            outline: 'none',
-                                            transition: 'border-color 0.2s ease',
-                                        }}
+                                        placeholder={activeTab === 'brief' ? (i18n.language === 'pl' ? 'Twoje imię i firma' : 'Your name & company') : t('contact.name')}
+                                        style={inputStyle}
                                         onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
                                         onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
                                     />
                                 </div>
+
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
                                     <label htmlFor="email" style={{
                                         fontFamily: 'var(--font-display)',
@@ -323,21 +384,84 @@ const Contact = () => {
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
                                         placeholder={t('contact.email')}
-                                        style={{
-                                            backgroundColor: '#F5F5F5',
-                                            border: '1px solid var(--border-secondary)',
-                                            borderRadius: '8px',
-                                            padding: '12px 16px',
-                                            fontSize: '16px',
-                                            fontFamily: 'var(--font-body)',
-                                            color: 'var(--text-primary)',
-                                            outline: 'none',
-                                            transition: 'border-color 0.2s ease',
-                                        }}
+                                        style={inputStyle}
                                         onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
                                         onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
                                     />
                                 </div>
+
+                                {/* Conditional fields for Brief (Główny Cel) tab */}
+                                {activeTab === 'brief' && (
+                                    <>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                            <label htmlFor="phone" style={{
+                                                fontFamily: 'var(--font-display)',
+                                                fontSize: '12px',
+                                                fontWeight: 700,
+                                                color: 'var(--text-secondary)',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.05em'
+                                            }}>{i18n.language === 'pl' ? 'Numer Telefonu' : 'Phone Number'}</label>
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                                required
+                                                placeholder={i18n.language === 'pl' ? 'Twój numer telefonu' : 'Your phone number'}
+                                                style={inputStyle}
+                                                onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
+                                                onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
+                                            />
+                                        </div>
+
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                            <label htmlFor="projectType" style={{
+                                                fontFamily: 'var(--font-display)',
+                                                fontSize: '12px',
+                                                fontWeight: 700,
+                                                color: 'var(--text-secondary)',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.05em'
+                                            }}>{i18n.language === 'pl' ? 'Rodzaj Projektu' : 'Project Type'}</label>
+                                            <select
+                                                id="projectType"
+                                                value={projectType}
+                                                onChange={(e) => setProjectType(e.target.value)}
+                                                style={selectStyle}
+                                            >
+                                                <option value="website">Strona Firmowa (od 1000 zł)</option>
+                                                <option value="landing">Landing Page (od 900 zł)</option>
+                                                <option value="store">Sklep Internetowy (od 1500 zł)</option>
+                                                <option value="booking">System Rezerwacji / CRM (od 2500 zł)</option>
+                                                <option value="other">Inny / Indywidualny projekt</option>
+                                            </select>
+                                        </div>
+
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                            <label htmlFor="budget" style={{
+                                                fontFamily: 'var(--font-display)',
+                                                fontSize: '12px',
+                                                fontWeight: 700,
+                                                color: 'var(--text-secondary)',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.05em'
+                                            }}>{i18n.language === 'pl' ? 'Zakładany Budżet' : 'Estimated Budget'}</label>
+                                            <select
+                                                id="budget"
+                                                value={budget}
+                                                onChange={(e) => setBudget(e.target.value)}
+                                                style={selectStyle}
+                                            >
+                                                <option value="under-1500">Poniżej 1500 zł</option>
+                                                <option value="1500-3000">1500 – 3000 zł (Rekomendowany)</option>
+                                                <option value="over-3000">Powyżej 3000 zł</option>
+                                            </select>
+                                        </div>
+                                    </>
+                                )}
+
+                                {/* Message/Description field */}
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
                                     <label htmlFor="message" style={{
                                         fontFamily: 'var(--font-display)',
@@ -346,30 +470,24 @@ const Contact = () => {
                                         color: 'var(--text-secondary)',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em'
-                                    }}>{t('contact.message')}</label>
+                                    }}>
+                                        {activeTab === 'brief' ? (i18n.language === 'pl' ? 'Opis projektu i Twoich celów' : 'Project description & goals') : t('contact.message')}
+                                    </label>
                                     <textarea
                                         id="message"
-                                        rows={4}
+                                        rows={activeTab === 'brief' ? 5 : 4}
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         required
-                                        placeholder={t('contact.message')}
-                                        style={{
-                                            backgroundColor: '#F5F5F5',
-                                            border: '1px solid var(--border-secondary)',
-                                            borderRadius: '8px',
-                                            padding: '12px 16px',
-                                            fontSize: '16px',
-                                            fontFamily: 'var(--font-body)',
-                                            color: 'var(--text-primary)',
-                                            outline: 'none',
-                                            resize: 'none',
-                                            transition: 'border-color 0.2s ease',
-                                        }}
+                                        placeholder={activeTab === 'brief' 
+                                            ? (i18n.language === 'pl' ? 'Opisz krótko czym zajmuje się Twoja firma i jaki jest cel nowej strony...' : 'Briefly describe your business and the purpose of the new site...') 
+                                            : t('contact.message')}
+                                        style={textareaStyle}
                                         onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
                                         onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
                                     />
                                 </div>
+
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
@@ -395,7 +513,9 @@ const Contact = () => {
                                         if (!isSubmitting) e.currentTarget.style.backgroundColor = 'var(--bg-dark-section)';
                                     }}
                                 >
-                                    {isSubmitting ? (i18n.language === 'pl' ? 'Wysyłanie...' : 'Sending...') : t('contact.send')}
+                                    {isSubmitting 
+                                        ? (i18n.language === 'pl' ? 'Wysyłanie...' : 'Sending...') 
+                                        : (activeTab === 'brief' ? (i18n.language === 'pl' ? 'Wyślij brief i odbierz wycenę ->' : 'Submit brief ->') : t('contact.send'))}
                                 </button>
                             </form>
                         </Reveal>
@@ -404,6 +524,35 @@ const Contact = () => {
             </div>
         </section>
     );
+};
+
+const inputStyle: React.CSSProperties = {
+    backgroundColor: '#F5F5F5',
+    border: '1px solid var(--border-secondary)',
+    borderRadius: '8px',
+    padding: '12px 16px',
+    fontSize: '16px',
+    fontFamily: 'var(--font-body)',
+    color: 'var(--text-primary)',
+    outline: 'none',
+    transition: 'border-color 0.2s ease',
+    width: '100%',
+};
+
+const selectStyle: React.CSSProperties = {
+    ...inputStyle,
+    cursor: 'pointer',
+    appearance: 'none',
+    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23707072' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right 16px center',
+    backgroundSize: '16px',
+    paddingRight: '40px',
+};
+
+const textareaStyle: React.CSSProperties = {
+    ...inputStyle,
+    resize: 'none',
 };
 
 export default Contact;
