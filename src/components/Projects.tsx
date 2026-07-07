@@ -23,7 +23,7 @@ const Projects = () => {
             solution: t('projects.p1_sol'),
             result: t('projects.p1_res'),
             url: "/sala-legend/index.html",
-            color: "#c39b57",
+            color: "var(--accent-red)",
             tag: "Event Venue",
             image: project4Img,
             metric: "+40% Rezerwacji"
@@ -35,7 +35,7 @@ const Projects = () => {
             solution: t('projects.p2_sol'),
             result: t('projects.p2_res'),
             url: "/fineppf/index.html",
-            color: "#2563eb",
+            color: "var(--accent-blue)",
             tag: "Detailing Studio",
             image: projekt5Img,
             metric: "Klient Premium"
@@ -47,7 +47,7 @@ const Projects = () => {
             solution: t('projects.p3_sol'),
             result: t('projects.p3_res'),
             url: "/crm-dashboard/index.html",
-            color: "#8b5cf6",
+            color: "var(--accent-orange)",
             tag: "Software Solution",
             image: project3Img,
             metric: "20h/Tydz Oszczędności"
@@ -58,34 +58,33 @@ const Projects = () => {
 
     return (
         <section id="projects" style={{ 
-            minHeight: '100vh', 
+            minHeight: '85vh', 
             display: 'flex', 
             alignItems: 'center', 
+            backgroundColor: 'var(--bg-color)',
             padding: isMobile ? '4rem 1.5rem' : '6rem 2rem' 
         }}>
             <div className="container">
                 <Reveal>
-                    <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                         <h2 style={{
-                            fontSize: 'clamp(2.25rem, 5vw, 4rem)',
-                            fontWeight: 800,
-                            letterSpacing: '-0.04em',
-                            lineHeight: 1.1
+                            fontFamily: 'var(--font-display)',
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                            fontWeight: 900,
+                            letterSpacing: '-0.02em',
+                            lineHeight: 1.0,
+                            textTransform: 'uppercase'
                         }}>
                             {t('projects.title')}{' '}
-                            <span style={{
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent'
-                            }}>{t('projects.titleAccent')}</span>
+                            <span style={{ color: 'var(--accent-red)' }}>{t('projects.titleAccent')}</span>
                         </h2>
                     </div>
                 </Reveal>
 
                 <div className="projects-grid" style={{ 
                     display: 'grid', 
-                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))', 
-                    gap: isMobile ? '1.5rem' : '2.5rem' 
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', 
+                    gap: '12px' /* Tight athletic gap */
                 }}>
                     {projects.map((project, idx) => (
                         <ProjectCard
@@ -111,37 +110,52 @@ const Projects = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             style={{
-                                position: 'fixed', inset: 0, backgroundColor: 'rgba(2, 6, 23, 0.95)', zIndex: 2000,
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', padding: isMobile ? '0' : '1.5rem'
+                                position: 'fixed', inset: 0, backgroundColor: 'rgba(17, 17, 17, 0.95)', zIndex: 2000,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '0' : '2rem'
                             }}
                             onClick={() => setExpandedId(null)}
                         >
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                initial={{ opacity: 0, scale: 0.98, y: 10 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                                exit={{ opacity: 0, scale: 0.98, y: 10 }}
                                 style={{
-                                    width: '100%', height: isMobile ? '100vh' : '90vh', maxWidth: '1400px', borderRadius: isMobile ? '0' : '1.5rem',
-                                    border: `1px solid ${expandedProject.color}44`, boxShadow: `0 0 60px ${expandedProject.color}22`,
-                                    display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#0c1322'
+                                    width: '100%', height: isMobile ? '100vh' : '90vh', maxWidth: '1440px', borderRadius: '0px',
+                                    border: '1px solid var(--border-primary)', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#FAFAFA'
                                 }}
                                 onClick={e => e.stopPropagation()}
                             >
                                 <div style={{
-                                    padding: '1rem 1.25rem', borderBottom: `1px solid ${expandedProject.color}22`,
-                                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(15, 23, 42, 0.9)', flexShrink: 0
+                                    padding: '1rem 1.5rem', borderBottom: '1px solid var(--border-secondary)',
+                                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#FFFFFF', flexShrink: 0
                                 }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                        <button onClick={() => setExpandedId(null)} style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', cursor: 'pointer', padding: '0.4rem 0.75rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
-                                            <ArrowLeft size={14} /> Wróć
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                        <button 
+                                            onClick={() => setExpandedId(null)} 
+                                            style={{ 
+                                                background: '#111111', 
+                                                border: 'none', 
+                                                color: '#FFFFFF', 
+                                                cursor: 'pointer', 
+                                                padding: '8px 16px', 
+                                                borderRadius: '30px', 
+                                                display: 'flex', 
+                                                alignItems: 'center', 
+                                                gap: '6px', 
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                fontFamily: 'var(--font-body)'
+                                            }}
+                                        >
+                                            <ArrowLeft size={16} /> Wróć
                                         </button>
-                                        <h3 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.2rem', fontWeight: 600 }}>{expandedProject.title}</h3>
+                                        <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', color: '#111111' }}>{expandedProject.title}</h3>
                                     </div>
-                                    <a href={expandedProject.url} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.4rem 0.75rem', background: expandedProject.color, borderRadius: '0.5rem', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
-                                        Live <ExternalLink size={12} />
+                                    <a href={expandedProject.url} target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 20px', background: 'var(--accent-blue)', borderRadius: '30px', fontSize: '14px', fontWeight: 600, textDecoration: 'none', fontFamily: 'var(--font-body)' }}>
+                                        Live <ExternalLink size={14} />
                                     </a>
                                 </div>
-                                <div style={{ flex: 1, position: 'relative', background: '#000' }}>
+                                <div style={{ flex: 1, position: 'relative', background: '#FFFFFF' }}>
                                     <iframe src={expandedProject.url} style={{ width: '100%', height: '100%', border: 'none' }} />
                                 </div>
                             </motion.div>
@@ -154,74 +168,104 @@ const Projects = () => {
     );
 };
 
-const ProjectCard = ({ project, idx, isHovered, onHover, onClick, t, isMobile }: any) => (
-    <Reveal delay={idx * 0.15} direction={idx % 2 === 0 ? 'left' : 'right'}>
-        <motion.div
+const ProjectCard = ({ project, idx, isHovered, onHover, onClick, t }: any) => (
+    <Reveal delay={idx * 0.1} direction={idx % 2 === 0 ? 'left' : 'right'}>
+        <div
             onClick={onClick}
-            onHoverStart={() => onHover(project.id)}
-            onHoverEnd={() => onHover(null)}
-            className="glass-panel"
             style={{ 
-                borderRadius: '1.5rem', 
+                border: '1px solid var(--border-secondary)',
+                borderRadius: '0px', /* Sharp corners */
                 overflow: 'hidden', 
                 cursor: 'pointer', 
                 position: 'relative', 
-                border: isHovered ? `1px solid ${project.color}55` : '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(255, 255, 255, 0.02)'
+                backgroundColor: 'var(--bg-surface)',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                transition: 'border-color 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+                onHover(project.id);
+                e.currentTarget.style.borderColor = 'var(--border-primary)';
+            }}
+            onMouseLeave={(e) => {
+                onHover(null);
+                e.currentTarget.style.borderColor = 'var(--border-secondary)';
             }}
         >
-            <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
-                <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: isHovered ? 'scale(1.05)' : 'scale(1)', transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(2, 6, 23, 0.95))' }} />
+            <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', backgroundColor: 'var(--bg-color)' }}>
+                <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover', 
+                        transform: isHovered ? 'scale(1.02)' : 'scale(1)', 
+                        transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
+                    }} 
+                />
                 
-                <div style={{ position: 'absolute', bottom: isMobile ? '1rem' : '1.5rem', left: isMobile ? '1rem' : '1.5rem', right: isMobile ? '1rem' : '1.5rem' }}>
+                {/* Metric Badge */}
+                <div style={{ position: 'absolute', top: '12px', left: '12px' }}>
                     <div style={{ 
                         display: 'inline-flex', 
                         alignItems: 'center', 
-                        gap: '0.5rem', 
-                        color: project.color, 
-                        fontWeight: 800, 
-                        fontSize: isMobile ? '0.85rem' : '0.95rem', 
-                        backgroundColor: 'rgba(0,0,0,0.5)', 
-                        padding: isMobile ? '0.5rem 1rem' : '0.6rem 1.25rem', 
-                        borderRadius: '3rem', 
-                        backdropFilter: 'blur(10px)', 
-                        border: `1px solid ${project.color}33` 
+                        gap: '6px', 
+                        color: '#FFFFFF', 
+                        fontWeight: 700, 
+                        fontSize: '12px', 
+                        backgroundColor: '#111111', 
+                        padding: '6px 14px', 
+                        borderRadius: '30px', 
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        fontFamily: 'var(--font-body)'
                     }}>
-                        <TrendingUp size={isMobile ? 16 : 18} strokeWidth={2.5} /> {project.metric}
+                        <TrendingUp size={14} strokeWidth={2.5} /> {project.metric}
                     </div>
                 </div>
             </div>
 
-            <div style={{ padding: isMobile ? '1.5rem' : '2rem', display: 'flex', flexDirection: 'column', gap: isMobile ? '1rem' : '1.25rem' }}>
-                <h3 style={{ fontSize: isMobile ? '1.4rem' : '1.75rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' }}>{project.title}</h3>
+            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+                <h3 style={{ 
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.75rem', 
+                    fontWeight: 800, 
+                    margin: 0, 
+                    letterSpacing: '-0.02em',
+                    textTransform: 'uppercase',
+                    color: 'var(--text-primary)'
+                }}>{project.title}</h3>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
-                        <ListChecks size={isMobile ? 16 : 18} color="var(--accent-color)" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
-                        <p style={{ color: 'var(--text-secondary)', fontSize: isMobile ? '0.85rem' : '0.95rem', margin: 0 }}>{project.problem}</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
+                    <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
+                        <ListChecks size={16} color="var(--text-secondary)" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '14px', margin: 0, lineHeight: 1.5 }}>{project.problem}</p>
                     </div>
-                    <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
-                        <DollarSign size={isMobile ? 16 : 18} color="#10b981" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
-                        <p style={{ color: '#fff', fontSize: isMobile ? '0.9rem' : '1rem', fontWeight: 700, margin: 0 }}>{project.result}</p>
+                    <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
+                        <DollarSign size={16} color="var(--accent-red)" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                        <p style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 600, margin: 0 }}>{project.result}</p>
                     </div>
                 </div>
 
                 <div style={{ 
-                    marginTop: '0.25rem',
-                    color: project.color, 
-                    fontWeight: 700, 
-                    fontSize: isMobile ? '0.8rem' : '0.9rem', 
+                    marginTop: '10px',
+                    color: 'var(--accent-blue)', 
+                    fontWeight: 600, 
+                    fontSize: '14px', 
                     textTransform: 'uppercase', 
                     display: 'flex', 
                     alignItems: 'center', 
-                    gap: '0.5rem',
-                    letterSpacing: '0.05em'
+                    gap: '4px',
+                    letterSpacing: '0.05em',
+                    fontFamily: 'var(--font-body)',
+                    textDecoration: isHovered ? 'underline' : 'none'
                 }}>
-                    {t('projects.open')} <Eye size={18} />
+                    {t('projects.open')} <Eye size={16} />
                 </div>
             </div>
-        </motion.div>
+        </div>
     </Reveal>
 );
 

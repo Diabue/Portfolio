@@ -17,14 +17,16 @@ const FinalCTA = () => {
 
     return (
         <section id="cta_final" style={{
-            minHeight: '100vh',
+            minHeight: '75vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: isMobile ? '4rem 1.5rem' : '6rem 2rem',
+            padding: isMobile ? '5rem 1.5rem' : '8rem 2rem',
+            backgroundColor: 'var(--bg-dark-section)', /* Stark dark section */
+            color: '#FFFFFF',
+            textAlign: 'center',
             position: 'relative',
-            overflow: 'hidden',
-            textAlign: 'center'
+            overflow: 'hidden'
         }}>
             <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
                 <div style={{
@@ -33,45 +35,41 @@ const FinalCTA = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: isMobile ? '2rem' : '3rem'
+                    gap: '2rem'
                 }}>
                     <Reveal>
                         <div style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '0.75rem',
-                            backgroundColor: 'rgba(167, 139, 250, 0.1)',
-                            color: '#a78bfa',
-                            padding: '0.5rem 1.25rem',
-                            borderRadius: '2rem',
-                            fontSize: isMobile ? '0.8rem' : '0.9rem',
-                            fontWeight: 800,
-                            letterSpacing: '0.12em',
-                            textTransform: 'uppercase'
+                            gap: '6px',
+                            border: '1.5px solid #FFFFFF',
+                            color: '#FFFFFF',
+                            padding: '4px 14px',
+                            borderRadius: '30px',
+                            fontSize: '12px',
+                            fontWeight: 700,
+                            letterSpacing: '0.08em',
+                            textTransform: 'uppercase',
+                            fontFamily: 'var(--font-body)'
                         }}>
-                            <Sparkles size={isMobile ? 16 : 18} /> {t('projects.titleAccent')}
+                            <Sparkles size={14} /> {t('projects.titleAccent')}
                         </div>
                     </Reveal>
 
                     <Reveal direction="up" delay={0.1}>
                         <h2 style={{
-                            fontSize: 'clamp(2.25rem, 6.5vw, 5rem)',
+                            fontFamily: 'var(--font-display)',
+                            fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
                             fontWeight: 900,
-                            letterSpacing: '-0.05em',
-                            lineHeight: 1.05,
-                            color: 'var(--text-primary)',
-                            padding: '0 1rem'
+                            letterSpacing: '-0.02em',
+                            lineHeight: 0.90,
+                            color: '#FFFFFF',
+                            textTransform: 'uppercase',
+                            padding: 0,
+                            margin: 0
                         }}>
                             {t('cta_final.title')} <br />
-                            <span style={{ 
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)', 
-                                WebkitBackgroundClip: 'text', 
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text',
-                                color: 'transparent',
-                                display: 'inline-block',
-                                paddingBottom: '0.1em'
-                            }}>
+                            <span style={{ color: 'var(--accent-red)' }}>
                                 {t('cta_final.titleAccent')}
                             </span>
                         </h2>
@@ -80,59 +78,48 @@ const FinalCTA = () => {
                     <Reveal delay={0.2}>
                         <p style={{
                             fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
-                            color: '#fff',
-                            lineHeight: 1.45,
-                            maxWidth: '750px',
-                            margin: '0 auto',
-                            fontWeight: 700,
-                            opacity: 0.95
+                            color: 'var(--text-secondary-dark)',
+                            lineHeight: 1.5,
+                            maxWidth: '700px',
+                            margin: '0 auto 1.5rem',
+                            fontWeight: 400
                         }}>
                             {t('cta_final.text')}
                         </p>
                     </Reveal>
 
-                    <Reveal delay={0.4}>
+                    <Reveal delay={0.3}>
                         <motion.button
                             onClick={scrollToContact}
-                            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(167, 139, 250, 0.5)' }}
-                            whileTap={{ scale: 0.95 }}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                             style={{
-                                backgroundColor: '#a78bfa',
-                                color: 'white',
-                                padding: isMobile ? '1.25rem 2.5rem' : '1.5rem 3.5rem',
-                                borderRadius: '4rem',
-                                fontSize: isMobile ? '1.1rem' : '1.3rem',
-                                fontWeight: 900,
+                                backgroundColor: '#FFFFFF',
+                                color: '#111111',
+                                padding: isMobile ? '1rem 2.25rem' : '1.15rem 3rem',
+                                borderRadius: '30px',
+                                fontSize: '16px',
+                                fontWeight: 600,
                                 border: 'none',
                                 cursor: 'pointer',
                                 display: 'flex',
-                                alignItems: 'center',
-                                gap: '1rem',
+                                  alignItems: 'center',
+                                gap: '0.5rem',
                                 textTransform: 'uppercase',
-                                letterSpacing: '0.08em',
-                                boxShadow: '0 15px 30px -10px rgba(167, 139, 250, 0.4)',
+                                letterSpacing: '0.05em',
                                 width: isMobile ? '100%' : 'auto',
-                                justifyContent: 'center'
+                                justifyContent: 'center',
+                                transition: 'background-color 0.2s ease',
+                                fontFamily: 'var(--font-body)'
                             }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--border-secondary)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
                         >
-                            {t('cta_final.button')} <ArrowRight size={isMobile ? 22 : 26} strokeWidth={3} />
+                            {t('cta_final.button')} <ArrowRight size={18} />
                         </motion.button>
                     </Reveal>
                 </div>
             </div>
-
-            {/* Background glowing effects */}
-            <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: isMobile ? '500px' : '800px',
-                height: isMobile ? '500px' : '800px',
-                background: 'radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 70%)',
-                zIndex: 0,
-                pointerEvents: 'none'
-            }} />
         </section>
     );
 };

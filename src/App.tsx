@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import WhyMe from './components/WhyMe';
@@ -8,8 +9,6 @@ import Process from './components/Process';
 import SocialProof from './components/SocialProof';
 import FinalCTA from './components/FinalCTA';
 import Contact from './components/Contact';
-import LanguageSwitcher from './components/LanguageSwitcher';
-import ParticlesBackground from './components/ParticlesBackground';
 import './i18n';
 import './App.css';
 
@@ -25,8 +24,7 @@ function App() {
 
   return (
     <div className={`app ${isMobile ? 'mobile' : ''}`}>
-      <ParticlesBackground />
-      <LanguageSwitcher />
+      <Navigation />
 
       <main className="content-wrapper">
         <Hero />

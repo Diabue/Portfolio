@@ -121,7 +121,11 @@ i18n
                         subtitle: "Zazwyczaj odpowiadam w ciągu kilku godzin. Wybierz dogodną formę kontaktu.",
                         phone: "Telefon",
                         email: "E-mail",
-                        send: "WYŚLIJ WIADOMOŚĆ"
+                        send: "WYŚLIJ WIADOMOŚĆ",
+                        name: "Imię",
+                        message: "Wiadomość",
+                        success: "Wiadomość została wysłana pomyślnie!",
+                        error: "Coś poszło nie tak. Spróbuj ponownie lub napisz na kontakt@mksites.pl."
                     },
                     footer: {
                         rights: "MKSites. Wszystkie prawa zastrzeżone."
@@ -237,7 +241,11 @@ i18n
                         subtitle: "I usually respond within a few hours. Choose your preferred contact method.",
                         phone: "Phone",
                         email: "Email",
-                        send: "SEND MESSAGE"
+                        send: "SEND MESSAGE",
+                        name: "Name",
+                        message: "Message",
+                        success: "Message sent successfully!",
+                        error: "Something went wrong. Please try again or email kontakt@mksites.pl."
                     },
                     footer: {
                         rights: "MKSites. All rights reserved."

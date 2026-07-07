@@ -1,6 +1,4 @@
-import { Zap, MessageSquare, Award, TrendingUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
 
 const WhyMe = () => {
@@ -8,91 +6,101 @@ const WhyMe = () => {
 
     const points = [
         {
-            icon: Zap,
+            num: "01",
             title: t('whyme.p1_title'),
-            desc: t('whyme.p1_desc'),
-            color: '#f59e0b'
+            desc: t('whyme.p1_desc')
         },
         {
-            icon: MessageSquare,
+            num: "02",
             title: t('whyme.p2_title'),
-            desc: t('whyme.p2_desc'),
-            color: '#10b981'
+            desc: t('whyme.p2_desc')
         },
         {
-            icon: Award,
+            num: "03",
             title: t('whyme.p3_title'),
-            desc: t('whyme.p3_desc'),
-            color: '#a78bfa'
+            desc: t('whyme.p3_desc')
         },
         {
-            icon: TrendingUp,
+            num: "04",
             title: t('whyme.p4_title'),
-            desc: t('whyme.p4_desc'),
-            color: '#ef4444'
+            desc: t('whyme.p4_desc')
         }
     ];
 
     return (
         <section id="whyme" style={{
-            minHeight: '100vh',
+            minHeight: '80vh',
             display: 'flex',
             alignItems: 'center',
+            backgroundColor: 'var(--bg-surface)',
             padding: '6rem 2rem'
         }}>
             <div className="container">
                 <Reveal>
-                    <div style={{ textAlign: 'center', marginBottom: '4.5rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                         <h2 style={{
+                            fontFamily: 'var(--font-display)',
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                            fontWeight: 800,
-                            letterSpacing: '-0.04em',
-                            lineHeight: 1.1
+                            fontWeight: 900,
+                            letterSpacing: '-0.02em',
+                            lineHeight: 1.0,
+                            textTransform: 'uppercase'
                         }}>
-                            {t('whyme.title')} <span style={{ 
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)', 
-                                WebkitBackgroundClip: 'text', 
-                                WebkitTextFillColor: 'transparent' 
-                            }}>
-                                {t('whyme.titleAccent')}
-                            </span>
+                            {t('whyme.title')} <span style={{ color: 'var(--accent-red)' }}>{t('whyme.titleAccent')}</span>
                         </h2>
                     </div>
                 </Reveal>
 
-                <div className="contact-grid" style={{ maxWidth: '1200px', gap: '2.5rem' }}>
+                <div style={{ 
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                    gap: '40px',
+                    maxWidth: '1440px',
+                    margin: '0 auto'
+                }}>
                     {points.map((point, index) => (
                         <Reveal 
                             key={index} 
-                            delay={index * 0.15}
-                            direction={index % 2 === 0 ? 'left' : 'right'}
+                            delay={index * 0.1}
+                            direction="up"
                         >
-                            <motion.div 
-                                className="glass-panel"
-                                style={{
-                                    padding: '2.5rem',
-                                    height: '100%',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '1.25rem',
-                                    border: '1px solid var(--border-color)',
-                                    textAlign: 'left',
-                                    position: 'relative'
-                                }}
-                            >
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1rem',
+                                padding: '1.5rem 0',
+                                borderTop: '1.5px solid var(--border-secondary)',
+                                textAlign: 'left'
+                            }}>
                                 <div style={{
-                                    padding: '1rem',
-                                    borderRadius: '1rem',
-                                    width: 'fit-content',
-                                    backgroundColor: `${point.color}15`,
-                                    color: point.color,
-                                    marginRight: 'auto'
+                                    fontFamily: 'var(--font-display)',
+                                    fontSize: '3.5rem',
+                                    fontWeight: 900,
+                                    color: 'var(--border-secondary)',
+                                    lineHeight: 1.0
                                 }}>
-                                    <point.icon size={28} strokeWidth={2.5} />
+                                    {point.num}
                                 </div>
-                                <h3 style={{ fontSize: '1.4rem', fontWeight: 700, letterSpacing: '-0.02em' }}>{point.title}</h3>
-                                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '1rem' }}>{point.desc}</p>
-                            </motion.div>
+                                <h3 style={{ 
+                                    fontFamily: 'var(--font-display)',
+                                    fontSize: '1.5rem', 
+                                    fontWeight: 800, 
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '-0.01em',
+                                    color: 'var(--text-primary)',
+                                    margin: 0
+                                }}>
+                                    {point.title}
+                                </h3>
+                                <p style={{ 
+                                    color: 'var(--text-secondary)', 
+                                    lineHeight: 1.6, 
+                                    fontSize: '15px',
+                                    margin: 0 
+                                }}>
+                                    {point.desc}
+                                </p>
+                            </div>
                         </Reveal>
                     ))}
                 </div>

@@ -17,32 +17,32 @@ const Hero = () => {
 
     return (
         <section id="home" style={{
-            minHeight: '100vh',
+            minHeight: '85vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: isMobile ? '4rem 1.5rem' : '6rem 2rem',
             position: 'relative',
+            backgroundColor: 'var(--bg-surface)',
             overflow: 'hidden'
         }}>
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+                <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
                     <Reveal>
                         <h1 style={{
-                            fontSize: 'clamp(2.25rem, 8vw, 5.5rem)',
+                            fontFamily: 'var(--font-display)',
+                            fontSize: 'clamp(2.5rem, 8vw, 6rem)',
                             fontWeight: 900,
-                            letterSpacing: '-0.05em',
-                            lineHeight: 1.05,
-                            marginBottom: '1.5rem',
+                            letterSpacing: '-0.02em',
+                            lineHeight: 0.90,
+                            textTransform: 'uppercase',
+                            marginBottom: '2rem',
                             color: 'var(--text-primary)'
                         }}>
                             {t('hero.headlineFirst')} <br />
                             <span style={{ 
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)', 
-                                WebkitBackgroundClip: 'text', 
-                                WebkitTextFillColor: 'transparent',
+                                color: 'var(--accent-red)',
                                 display: 'inline-block',
-                                paddingBottom: '0.1em'
                             }}>
                                 {t('hero.headlineAccent')}
                             </span> <br />
@@ -52,12 +52,12 @@ const Hero = () => {
 
                     <Reveal delay={0.15}>
                         <p style={{
-                            fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
+                            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
                             color: 'var(--text-secondary)',
                             lineHeight: 1.5,
                             maxWidth: '750px',
                             margin: '0 auto 3rem',
-                            fontWeight: 500
+                            fontWeight: 400
                         }}>
                             {t('hero.subheadline')}
                         </p>
@@ -69,71 +69,69 @@ const Hero = () => {
                             flexDirection: isMobile ? 'column' : 'row',
                             alignItems: 'center', 
                             justifyContent: 'center', 
-                            gap: '1.5rem' 
+                            gap: '2rem' 
                         }}>
                             <motion.button
                                 onClick={scrollToContact}
-                                whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(167, 139, 250, 0.4)' }}
-                                whileTap={{ scale: 0.95 }}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
                                 style={{
-                                    backgroundColor: 'var(--accent-color)',
-                                    color: 'white',
-                                    padding: isMobile ? '1.25rem 2rem' : '1.5rem 3.5rem',
-                                    borderRadius: '3rem',
-                                    fontSize: isMobile ? '1.1rem' : '1.3rem',
-                                    fontWeight: 900,
+                                    backgroundColor: 'var(--bg-dark-section)',
+                                    color: '#FFFFFF',
+                                    padding: isMobile ? '1rem 2.25rem' : '1.15rem 3rem',
+                                    borderRadius: '30px',
+                                    fontSize: '16px',
+                                    fontWeight: 600,
                                     border: 'none',
                                     cursor: 'pointer',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '0.75rem',
+                                    gap: '0.5rem',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.05em',
                                     width: isMobile ? '100%' : 'auto',
-                                    justifyContent: 'center'
+                                    justifyContent: 'center',
+                                    transition: 'background-color 0.2s ease',
                                 }}
+                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--text-secondary)'}
+                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-dark-section)'}
                             >
-                                {t('hero.cta')} <ArrowRight size={isMobile ? 20 : 24} />
+                                {t('hero.cta')} <ArrowRight size={18} />
                             </motion.button>
 
                             <div style={{ 
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: isMobile ? 'center' : 'flex-start',
-                                gap: '0.5rem'
+                                gap: '0.25rem',
+                                borderLeft: isMobile ? 'none' : '2px solid var(--border-secondary)',
+                                paddingLeft: isMobile ? '0' : '1.5rem',
+                                textAlign: 'left',
                             }}>
                                 <div style={{ 
                                     display: 'flex', 
                                     alignItems: 'center', 
-                                    gap: '1rem', 
-                                    color: 'white', 
-                                    fontWeight: 700,
-                                    fontSize: isMobile ? '0.9rem' : '1.1rem'
+                                    gap: '0.5rem', 
+                                    color: 'var(--text-secondary)',
+                                    fontSize: '14px',
+                                    fontWeight: 500
                                 }}>
-                                    <div style={{ 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        gap: '0.5rem',
-                                        color: 'var(--text-secondary)'
-                                    }}>
-                                        <Phone size={isMobile ? 16 : 20} color="var(--accent-color)" />
-                                        <span>{t('hero.trust')}</span>
-                                    </div>
+                                    <Phone size={16} color="var(--text-secondary)" />
+                                    <span>{t('hero.trust')}</span>
                                 </div>
                                 <p style={{ 
-                                    fontSize: isMobile ? '0.85rem' : '1rem', 
-                                    color: '#fff', 
+                                    fontSize: '16px', 
+                                    color: 'var(--text-primary)', 
                                     fontWeight: 600,
-                                    opacity: 0.9,
                                     margin: 0
                                 }}>
                                     {t('hero.priceLine')}
                                 </p>
                                 <p style={{ 
-                                    fontSize: isMobile ? '0.8rem' : '0.9rem', 
+                                    fontSize: '14px', 
                                     color: 'var(--text-secondary)',
                                     margin: 0,
-                                    fontWeight: 500
+                                    fontWeight: 400
                                 }}>
                                     {t('hero.advancedLine')}
                                 </p>
@@ -142,26 +140,6 @@ const Hero = () => {
                     </Reveal>
                 </div>
             </div>
-
-            {/* Glowing background highlights */}
-            <div style={{
-                position: 'absolute',
-                top: '20%',
-                left: '10%',
-                width: '300px',
-                height: '300px',
-                background: 'radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%)',
-                zIndex: 0
-            }} />
-            <div style={{
-                position: 'absolute',
-                bottom: '20%',
-                right: '10%',
-                width: '400px',
-                height: '400px',
-                background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
-                zIndex: 0
-            }} />
         </section>
     );
 };

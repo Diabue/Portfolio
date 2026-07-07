@@ -1,10 +1,69 @@
+import { useState } from 'react';
 import { Phone, Mail, Github, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const Contact = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isMobile = useMediaQuery('(max-width: 960px)');
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
+        
+        if (!accessKey) {
+            console.error("Brak klucza VITE_WEB3FORMS_ACCESS_KEY w pliku .env");
+            setSubmitStatus('error');
+            setIsSubmitting(false);
+            return;
+        }
+
+        const formData = {
+            access_key: accessKey,
+            name,
+            email,
+            message,
+            subject: `Nowa wiadomość od ${name} (${email}) z portfolio MKSITES`,
+            from_name: "MKSITES Portfolio Form",
+        };
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                setSubmitStatus('success');
+                setName('');
+                setEmail('');
+                setMessage('');
+            } else {
+                setSubmitStatus('error');
+                console.error("Błąd Web3Forms:", result);
+            }
+        } catch (error) {
+            setSubmitStatus('error');
+            console.error("Wystąpił błąd podczas wysyłania:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const contactItems = [
         {
@@ -12,15 +71,15 @@ const Contact = () => {
             label: t('contact.phone'),
             value: "795 052 809",
             href: "tel:+48795052809",
-            color: "#10b981",
+            color: "var(--accent-red)",
             cta: "Zadzwoń teraz"
         },
         {
             icon: Mail,
             label: t('contact.email'),
-            value: ["maks", "mksites.pl"].join("@"),
-            href: `mailto:${["maks", "mksites.pl"].join("@")}`,
-            color: "#3b82f6",
+            value: "kontakt@mksites.pl",
+            href: "mailto:kontakt@mksites.pl",
+            color: "var(--accent-blue)",
             cta: "Wyślij zapytanie"
         },
         {
@@ -28,135 +87,307 @@ const Contact = () => {
             label: "GitHub",
             value: "Diabue",
             href: "https://github.com/Diabue",
-            color: "#ffffff",
+            color: "#111111",
             cta: "Zobacz kod"
         }
     ];
 
     return (
-        <section id="contact" style={{ display: 'flex', alignItems: 'center' }}>
+        <section id="contact" style={{ 
+            minHeight: '80vh',
+            display: 'flex', 
+            alignItems: 'center',
+            backgroundColor: 'var(--bg-color)',
+            padding: '6rem 2rem'
+        }}>
             <div className="container">
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <Reveal>
-                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, marginBottom: '1rem', letterSpacing: '-0.04em' }}>
-                            {t('contact.title')} <span style={{
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent'
-                            }}>{t('contact.titleAccent')}</span>
+                        <h2 style={{ 
+                            fontFamily: 'var(--font-display)',
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                            fontWeight: 900, 
+                            letterSpacing: '-0.02em',
+                            lineHeight: 1.0,
+                            textTransform: 'uppercase',
+                            marginBottom: '1rem' 
+                        }}>
+                            {t('contact.title')} <span style={{ color: 'var(--accent-red)' }}>{t('contact.titleAccent')}</span>
                         </h2>
                     </Reveal>
                     <Reveal delay={0.1}>
-                        <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto', lineHeight: 1.5 }}>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto', lineHeight: 1.5 }}>
                             {t('contact.subtitle')}
                         </p>
                     </Reveal>
                 </div>
 
                 <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-                    gap: '2rem', 
+                    display: 'flex', 
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: '30px', 
                     maxWidth: '1200px', 
-                    margin: '0 auto' 
+                    margin: '0 auto',
+                    alignItems: 'stretch'
                 }}>
-                    {contactItems.map((item, idx) => (
-                        <Reveal key={idx} delay={idx * 0.15} direction={idx === 0 ? 'left' : idx === 1 ? 'up' : 'right'}>
-                            <motion.a
-                                href={item.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="glass-panel"
-                                whileHover={{ scale: 1.02, y: -8 }}
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    padding: '3rem 2.5rem',
-                                    textAlign: 'left',
-                                    gap: '1.5rem',
-                                    textDecoration: 'none',
-                                    border: `1px solid ${item.color}33`,
-                                    position: 'relative',
-                                    overflow: 'hidden'
-                                }}
-                            >
-                                <div style={{
-                                    width: '64px',
-                                    height: '64px',
-                                    borderRadius: '1.25rem',
-                                    background: `${item.color}15`,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: item.color,
-                                    boxShadow: `0 0 20px ${item.color}11`
-                                }}>
-                                    <item.icon size={32} strokeWidth={2.5} />
-                                </div>
-                                <div style={{ width: '100%' }}>
-                                    <h3 style={{ 
-                                        fontSize: '0.85rem', 
-                                        color: 'var(--text-secondary)', 
-                                        marginBottom: '0.5rem', 
-                                        fontWeight: 700, 
-                                        textTransform: 'uppercase', 
-                                        letterSpacing: '0.15em' 
-                                    }}>
-                                        {item.label}
-                                    </h3>
-                                    <p style={{ 
-                                        fontSize: 'min(1.5rem, 5vw)', 
-                                        color: '#fff', 
-                                        fontWeight: 800, 
-                                        marginBottom: '1rem',
-                                        letterSpacing: '-0.02em'
-                                    }}>
-                                        {item.value}
-                                    </p>
-                                    <div style={{ 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        gap: '0.5rem', 
-                                        color: item.color, 
-                                        fontSize: '0.9rem', 
-                                        fontWeight: 700,
-                                        opacity: 0.8
-                                    }}>
-                                        {item.cta} <ExternalLink size={14} />
-                                    </div>
-                                </div>
-
-                                {/* Radial accent */}
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '-40%',
-                                    right: '-40%',
-                                    width: '200px',
-                                    height: '200px',
-                                    background: `radial-gradient(circle, ${item.color}15 0%, transparent 70%)`,
-                                    pointerEvents: 'none'
-                                }} />
-                            </motion.a>
-                        </Reveal>
-                    ))}
-                </div>
-
-                <Reveal delay={0.5}>
+                    {/* Left Column: Contact Cards */}
                     <div style={{ 
-                        marginTop: '5rem', 
-                        textAlign: 'center', 
-                        padding: '2rem', 
-                        borderRadius: '2rem',
-                        backgroundColor: 'rgba(255,255,255,0.03)',
-                        border: '1px solid rgba(255,255,255,0.05)',
-                        maxWidth: '500px',
-                        margin: '5rem auto 0'
+                        flex: 1, 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: '16px',
+                        width: '100%' 
                     }}>
-                        <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 500 }}>
-                            🚀 <span style={{ color: '#fff' }}>Gwarancja kontaktu:</span> zazwyczaj odpowiadam <span style={{ color: '#a78bfa' }}>w ciągu kilku godzin</span>.
-                        </p>
+                        {contactItems.map((item, idx) => (
+                            <Reveal key={idx} delay={idx * 0.1} direction="up" width="100%">
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        padding: '2rem 1.5rem',
+                                        textAlign: 'left',
+                                        gap: '1rem',
+                                        textDecoration: 'none',
+                                        border: '1px solid var(--border-secondary)',
+                                        borderRadius: '0px',
+                                        backgroundColor: 'var(--bg-surface)',
+                                        position: 'relative',
+                                        transition: 'border-color 0.2s ease',
+                                        height: '100%',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--border-primary)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border-secondary)'}
+                                >
+                                    <div style={{
+                                        width: '40px',
+                                        height: '40px',
+                                        border: '1px solid var(--border-secondary)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: 'var(--text-primary)',
+                                        backgroundColor: '#FAFAFA'
+                                    }}>
+                                        <item.icon size={18} strokeWidth={2} />
+                                    </div>
+                                    <div style={{ width: '100%' }}>
+                                        <h3 style={{ 
+                                            fontFamily: 'var(--font-display)',
+                                            fontSize: '11px', 
+                                            color: 'var(--text-secondary)', 
+                                            marginBottom: '0.25rem', 
+                                            fontWeight: 700, 
+                                            textTransform: 'uppercase', 
+                                            letterSpacing: '0.08em' 
+                                        }}>
+                                            {item.label}
+                                        </h3>
+                                        <p style={{ 
+                                            fontFamily: 'var(--font-display)',
+                                            fontSize: '1.5rem', 
+                                            color: 'var(--text-primary)', 
+                                            fontWeight: 800, 
+                                            textTransform: 'uppercase',
+                                            marginBottom: '0.75rem',
+                                            letterSpacing: '-0.02em',
+                                            lineHeight: 1.1
+                                        }}>
+                                            {item.value}
+                                        </p>
+                                        <div style={{ 
+                                            display: 'inline-flex', 
+                                            alignItems: 'center', 
+                                            gap: '4px', 
+                                            color: '#FFFFFF', 
+                                            backgroundColor: '#111111',
+                                            borderRadius: '30px',
+                                            padding: '6px 14px',
+                                            fontSize: '12px', 
+                                            fontWeight: 500,
+                                            fontFamily: 'var(--font-body)'
+                                        }}>
+                                            {item.cta} <ExternalLink size={12} />
+                                        </div>
+                                    </div>
+                                </a>
+                            </Reveal>
+                        ))}
                     </div>
-                </Reveal>
+
+                    {/* Right Column: Contact Form */}
+                    <div style={{ flex: 1.2, display: 'flex', width: '100%' }}>
+                        <Reveal delay={0.15} direction="up" width="100%">
+                            <form onSubmit={handleSubmit} style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '16px',
+                                backgroundColor: 'var(--bg-surface)',
+                                border: '1px solid var(--border-secondary)',
+                                padding: '2.5rem 2rem',
+                                width: '100%',
+                                height: '100%',
+                                boxSizing: 'border-box'
+                            }}>
+                                {submitStatus === 'success' && (
+                                    <div style={{
+                                        backgroundColor: '#10B981',
+                                        color: '#FFFFFF',
+                                        padding: '12px 16px',
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em',
+                                        fontFamily: 'var(--font-body)',
+                                        textAlign: 'center',
+                                        marginBottom: '10px'
+                                    }}>
+                                        {t('contact.success')}
+                                    </div>
+                                )}
+                                {submitStatus === 'error' && (
+                                    <div style={{
+                                        backgroundColor: 'var(--accent-red)',
+                                        color: '#FFFFFF',
+                                        padding: '12px 16px',
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em',
+                                        fontFamily: 'var(--font-body)',
+                                        textAlign: 'center',
+                                        marginBottom: '10px'
+                                    }}>
+                                        {t('contact.error')}
+                                    </div>
+                                )}
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                    <label htmlFor="name" style={{
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: '12px',
+                                        fontWeight: 700,
+                                        color: 'var(--text-secondary)',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em'
+                                    }}>{t('contact.name')}</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                        placeholder={t('contact.name')}
+                                        style={{
+                                            backgroundColor: '#F5F5F5',
+                                            border: '1px solid var(--border-secondary)',
+                                            borderRadius: '8px',
+                                            padding: '12px 16px',
+                                            fontSize: '16px',
+                                            fontFamily: 'var(--font-body)',
+                                            color: 'var(--text-primary)',
+                                            outline: 'none',
+                                            transition: 'border-color 0.2s ease',
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
+                                        onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
+                                    />
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                    <label htmlFor="email" style={{
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: '12px',
+                                        fontWeight: 700,
+                                        color: 'var(--text-secondary)',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em'
+                                    }}>{t('contact.email')}</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                        placeholder={t('contact.email')}
+                                        style={{
+                                            backgroundColor: '#F5F5F5',
+                                            border: '1px solid var(--border-secondary)',
+                                            borderRadius: '8px',
+                                            padding: '12px 16px',
+                                            fontSize: '16px',
+                                            fontFamily: 'var(--font-body)',
+                                            color: 'var(--text-primary)',
+                                            outline: 'none',
+                                            transition: 'border-color 0.2s ease',
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
+                                        onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
+                                    />
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                    <label htmlFor="message" style={{
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: '12px',
+                                        fontWeight: 700,
+                                        color: 'var(--text-secondary)',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em'
+                                    }}>{t('contact.message')}</label>
+                                    <textarea
+                                        id="message"
+                                        rows={4}
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        required
+                                        placeholder={t('contact.message')}
+                                        style={{
+                                            backgroundColor: '#F5F5F5',
+                                            border: '1px solid var(--border-secondary)',
+                                            borderRadius: '8px',
+                                            padding: '12px 16px',
+                                            fontSize: '16px',
+                                            fontFamily: 'var(--font-body)',
+                                            color: 'var(--text-primary)',
+                                            outline: 'none',
+                                            resize: 'none',
+                                            transition: 'border-color 0.2s ease',
+                                        }}
+                                        onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
+                                        onBlur={(e) => e.target.style.borderColor = 'var(--border-secondary)'}
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    style={{
+                                        backgroundColor: isSubmitting ? 'var(--text-disabled)' : 'var(--bg-dark-section)',
+                                        color: '#FFFFFF',
+                                        padding: '12px 24px',
+                                        border: 'none',
+                                        borderRadius: '30px',
+                                        fontFamily: 'var(--font-body)',
+                                        fontWeight: 600,
+                                        fontSize: '16px',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em',
+                                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                                        marginTop: 'auto',
+                                        transition: 'background-color 0.2s ease',
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        if (!isSubmitting) e.currentTarget.style.backgroundColor = 'var(--text-secondary)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        if (!isSubmitting) e.currentTarget.style.backgroundColor = 'var(--bg-dark-section)';
+                                    }}
+                                >
+                                    {isSubmitting ? (i18n.language === 'pl' ? 'Wysyłanie...' : 'Sending...') : t('contact.send')}
+                                </button>
+                            </form>
+                        </Reveal>
+                    </div>
+                </div>
             </div>
         </section>
     );

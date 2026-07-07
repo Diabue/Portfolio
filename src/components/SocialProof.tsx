@@ -1,6 +1,5 @@
-import { Star, Quote } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
 
 const SocialProof = () => {
@@ -14,95 +13,97 @@ const SocialProof = () => {
 
     return (
         <section id="social" style={{
-            minHeight: '100vh',
+            minHeight: '80vh',
             display: 'flex',
             alignItems: 'center',
+            backgroundColor: 'var(--bg-surface)',
             padding: '6rem 2rem'
         }}>
             <div className="container">
                 <Reveal>
                     <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                         <h2 style={{
+                            fontFamily: 'var(--font-display)',
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                            fontWeight: 800,
-                            letterSpacing: '-0.04em',
-                            lineHeight: 1.1
+                            fontWeight: 900,
+                            letterSpacing: '-0.02em',
+                            lineHeight: 1.0,
+                            textTransform: 'uppercase'
                         }}>
-                            {t('social.title')} <span style={{ 
-                                background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent'
-                             }}>{t('social.titleAccent')}</span>
+                            {t('social.title')} <span style={{ color: 'var(--accent-red)' }}>{t('social.titleAccent')}</span>
                         </h2>
                     </div>
                 </Reveal>
 
-                <div className="contact-grid" style={{ maxWidth: '1200px', gap: '2.5rem' }}>
+                <div style={{ 
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gap: '40px',
+                    maxWidth: '1440px',
+                    margin: '0 auto'
+                }}>
                     {testimonials.map((testimonial, index) => (
                         <Reveal 
                             key={index} 
                             delay={index * 0.15} 
-                            direction={index === 0 ? 'left' : index === 1 ? 'up' : 'right'}
+                            direction="up"
                         >
-                            <motion.div 
-                                whileHover={{ scale: 1.02 }}
-                                className="glass-panel"
-                                style={{
-                                    padding: '2.5rem',
-                                    height: '100%',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '1.5rem',
-                                    border: '1px solid var(--border-color)',
-                                    textAlign: 'left',
-                                    position: 'relative'
-                                }}
-                            >
-                                <Quote size={40} style={{ color: 'var(--accent-color)', opacity: 0.15, position: 'absolute', top: '1.5rem', right: '1.5rem' }} />
-                                
-                                <div style={{ display: 'flex', gap: '0.25rem', color: '#fbbf24' }}>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1.5rem',
+                                padding: '2rem 0',
+                                borderTop: '1.5px solid var(--border-secondary)',
+                                textAlign: 'left',
+                                position: 'relative'
+                            }}>
+                                <div style={{ display: 'flex', gap: '2px', color: 'var(--text-primary)' }}>
                                     {[...Array(testimonial.rating)].map((_, i) => (
-                                        <Star key={i} size={18} fill="#fbbf24" strokeWidth={0} />
+                                        <Star key={i} size={14} fill="var(--text-primary)" strokeWidth={0} />
                                     ))}
                                 </div>
 
                                 <p style={{
-                                    fontSize: '1.1rem',
+                                    fontFamily: 'var(--font-body)',
+                                    fontSize: '17px',
                                     lineHeight: 1.6,
                                     color: 'var(--text-primary)',
                                     fontWeight: 400,
                                     fontStyle: 'italic',
-                                    position: 'relative',
-                                    zIndex: 1
+                                    margin: 0
                                 }}>
                                     "{testimonial.text}"
                                 </p>
 
                                 <div style={{
                                     marginTop: 'auto',
-                                    borderTop: '1px solid var(--border-color)',
-                                    paddingTop: '1.5rem',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '1rem'
+                                    gap: '12px'
                                 }}>
                                     <div style={{
-                                        width: '40px',
-                                        height: '40px',
-                                        borderRadius: '50%',
-                                        backgroundColor: 'var(--accent-color)',
+                                        width: '32px',
+                                        height: '32px',
+                                        backgroundColor: '#111111',
+                                        color: '#FFFFFF',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        color: 'white',
                                         fontWeight: 700,
-                                        fontSize: '0.9rem'
+                                        fontSize: '14px',
+                                        fontFamily: 'var(--font-body)'
                                     }}>
                                         {testimonial.author.charAt(0)}
                                     </div>
-                                    <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>{testimonial.author}</span>
+                                    <span style={{ 
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: '16px',
+                                        fontWeight: 800, 
+                                        textTransform: 'uppercase',
+                                        color: 'var(--text-primary)' 
+                                    }}>{testimonial.author}</span>
                                 </div>
-                            </motion.div>
+                            </div>
                         </Reveal>
                     ))}
                 </div>

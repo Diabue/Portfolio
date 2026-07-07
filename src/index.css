@@ -1,16 +1,28 @@
 /* Font already imported in index.html for performance */
 
 :root {
-  --bg-color: #020617;
-  --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-  --surface-color: rgba(15, 23, 42, 0.7);
-  --surface-hover: rgba(30, 41, 59, 0.85);
-  --border-color: rgba(167, 139, 250, 0.15);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-color: #a78bfa;
-  --accent-glow: 0 0 30px rgba(167, 139, 250, 0.3);
-  --font-family: 'Outfit', sans-serif;
+  --bg-color: #FAFAFA; /* Snow background */
+  --bg-surface: #FFFFFF; /* Pure White */
+  --bg-dark-section: #111111; /* Nike Black */
+  --bg-dark-surface: #1F1F21; /* Deep Charcoal */
+  --text-primary: #111111;
+  --text-secondary: #707072; /* Secondary gray */
+  --text-disabled: #9E9EA0;
+  
+  --text-primary-dark: #FFFFFF;
+  --text-secondary-dark: #9E9EA0;
+  
+  --accent-color: #111111;
+  --accent-red: #D30005; /* Nike Red */
+  --accent-blue: #1151FF; /* Link Blue */
+  --accent-orange: #FF5000; /* Orange Flash */
+  
+  --border-primary: #707072;
+  --border-secondary: #CACACB;
+  --border-dark: #39393B;
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Outfit', sans-serif;
 }
 
 * {
@@ -24,7 +36,7 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   background: var(--bg-color);
   color: var(--text-primary);
   line-height: 1.6;
@@ -33,91 +45,90 @@ body {
 }
 
 .app {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none; /* IE/Edge */
 }
 
-.app::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+.content-wrapper {
+  padding-top: 94px; /* Wysokość nagłówka (baner + nav) */
 }
 
-/* Section Logic: Full Slides */
+/* Section Logic: Normal Flow, No Snap */
 section {
   width: 100vw;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 4rem 2rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  padding: 5rem 2rem;
   flex-shrink: 0;
   overflow: hidden;
 }
 
 @media (max-width: 1024px) {
   section {
-    padding: 1.5rem;
+    padding: 3rem 1.5rem;
   }
 }
 
 a {
-  color: var(--accent-color);
+  color: var(--accent-blue);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-h1, h2, h3 {
-  line-height: 1.1;
+h1, h2, h3, .display-font {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  line-height: 1.0;
 }
 
-/* Glassmorphism Utility */
+/* Nike Card Utility (Replacing Glassmorphism) */
 .glass-panel {
-  background: var(--surface-color);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  border-radius: 1.5rem;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-secondary);
+  border-radius: 0px; /* Monochromatic product cards are sharp */
+  transition: border-color 0.2s ease, background-color 0.2s ease;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  box-shadow: none !important;
 }
 
 .glass-panel:hover {
-  border-color: rgba(167, 139, 250, 0.4);
-  background: var(--surface-hover);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6);
+  border-color: var(--border-primary);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Utilities */
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   width: 100%;
-  padding: 0 1.5rem;
+  padding: 0 3rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
 }
 
 /* Grids */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 12px; /* Tight athletic grid gaps */
   width: 100%;
 }
 
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 24px;
   width: 100%;
 }
 
@@ -133,24 +144,21 @@ h1, h2, h3 {
   }
   
   section {
-    min-height: 100vh;
-    padding: 6rem 1.5rem;
-  }
-
-  .app {
-    scroll-snap-type: y proximity; /* Less aggressive on mobile */
-    overflow-y: auto;
+    min-height: auto;
+    padding: 4rem 1.5rem;
   }
 }
 
-/* Custom Scrollbar - for fallback */
+/* Custom Scrollbar - Monochromatic */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #FAFAFA;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-color);
-  border-radius: 10px;
+  background: #CACACB;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #707072;
 }

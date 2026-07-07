@@ -19,7 +19,7 @@ const Pricing = () => {
             display: 'flex',
             alignItems: 'center',
             padding: '6rem 2rem',
-            backgroundColor: 'rgba(15, 23, 42, 0.3)',
+            backgroundColor: 'var(--bg-surface)',
             position: 'relative',
             overflow: 'hidden'
         }}>
@@ -28,99 +28,118 @@ const Pricing = () => {
                     display: 'flex', 
                     flexDirection: isMobile ? 'column' : 'row',
                     gap: isMobile ? '3rem' : '5rem',
-                    alignItems: 'center'
+                    alignItems: 'stretch'
                 }}>
-                    <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'left' }}>
+                    {/* Left Column: Heading and Factors */}
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: isMobile ? 'center' : 'left' }}>
                         <Reveal direction="left">
                             <h2 style={{
+                                fontFamily: 'var(--font-display)',
                                 fontSize: 'clamp(2.5rem, 4vw, 4rem)',
-                                fontWeight: 800,
-                                letterSpacing: '-0.04em',
-                                lineHeight: 1.1,
+                                fontWeight: 900,
+                                letterSpacing: '-0.02em',
+                                lineHeight: 1.0,
+                                textTransform: 'uppercase',
                                 marginBottom: '1.5rem'
                             }}>
-                                {t('pricing.title')} <span style={{ 
-                                    background: 'linear-gradient(to right, #a78bfa, #3b82f6)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent'
-                                 }}>{t('pricing.titleAccent')}</span>
+                                {t('pricing.title')} <span style={{ color: 'var(--accent-red)' }}>{t('pricing.titleAccent')}</span>
                             </h2>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '2.5rem', fontWeight: 500 }}>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '2.5rem', fontWeight: 400 }}>
                                 {t('pricing.variables')}
                             </p>
                         </Reveal>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                             {factors.map((factor, i) => (
                                 <Reveal key={i} delay={i * 0.1} direction="left">
                                     <div style={{ 
                                         display: 'flex', 
                                         alignItems: 'center', 
                                         gap: '1rem',
-                                        background: 'rgba(255,255,255,0.03)',
+                                        background: '#FAFAFA',
                                         padding: '1.25rem 1.5rem',
-                                        borderRadius: '1.25rem',
-                                        border: '1px solid rgba(255,255,255,0.05)'
+                                        borderRadius: '0px', /* Sharp edges */
+                                        border: '1px solid var(--border-secondary)',
                                     }}>
                                         <div style={{ 
-                                            width: '40px', 
-                                            height: '40px', 
-                                            borderRadius: '0.75rem', 
-                                            backgroundColor: 'rgba(167, 139, 250, 0.1)',
+                                            width: '36px', 
+                                            height: '36px', 
+                                            backgroundColor: '#111111',
+                                            color: '#FFFFFF',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            color: '#a78bfa',
                                             flexShrink: 0
                                         }}>
-                                            <factor.icon size={20} />
+                                            <factor.icon size={18} />
                                         </div>
-                                        <span style={{ fontSize: '1.05rem', fontWeight: 600, color: '#fff' }}>{factor.text}</span>
+                                        <span style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}>{factor.text}</span>
                                     </div>
                                 </Reveal>
                             ))}
                         </div>
                     </div>
 
-                    <div style={{ flex: 1, width: '100%' }}>
-                        <Reveal direction="right">
-                            <div className="glass-panel" style={{
-                                padding: '3rem',
-                                borderRadius: '2rem',
-                                background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%)',
-                                border: '1px solid rgba(167, 139, 250, 0.2)',
-                                boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+                    {/* Right Column: Card */}
+                    <div style={{ flex: 1, display: 'flex' }}>
+                        <Reveal direction="right" width="100%">
+                            <div style={{
+                                padding: '3rem 2.5rem',
+                                height: '100%',
+                                borderRadius: '0px', /* Sharp edges */
+                                background: '#111111', /* Nike Black inverted card */
+                                border: 'none',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '2rem'
+                                justifyContent: 'center',
+                                gap: '2rem',
+                                color: '#FFFFFF',
                             }}>
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{ 
                                         display: 'inline-flex', 
                                         alignItems: 'center', 
-                                        gap: '0.5rem',
-                                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                                        color: '#10b981',
-                                        padding: '0.5rem 1.25rem',
-                                        borderRadius: '2rem',
-                                        fontSize: '0.9rem',
-                                        fontWeight: 800,
+                                        gap: '6px', 
+                                        backgroundColor: '#FFFFFF',
+                                        color: '#111111',
+                                        padding: '6px 16px',
+                                        borderRadius: '30px',
+                                        fontSize: '12px',
+                                        fontWeight: 700,
+                                        fontFamily: 'var(--font-body)',
+                                        letterSpacing: '0.05em',
+                                        textTransform: 'uppercase',
                                         marginBottom: '1.5rem'
                                     }}>
-                                        <Info size={16} /> GWARANCJA UCZCIWOŚCI
+                                        <Info size={14} /> GWARANCJA UCZCIWOŚCI
                                     </div>
-                                    <h4 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>{t('pricing.trust1')}</h4>
-                                    <p style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>{t('pricing.trust2')}</p>
+                                    <h4 style={{ 
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: '2rem', 
+                                        fontWeight: 800, 
+                                        textTransform: 'uppercase',
+                                        lineHeight: 1.1,
+                                        marginBottom: '0.5rem',
+                                        color: '#FFFFFF' 
+                                    }}>{t('pricing.trust1')}</h4>
+                                    <p style={{ color: 'var(--text-secondary-dark)', fontWeight: 500, margin: 0 }}>{t('pricing.trust2')}</p>
                                 </div>
 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1rem' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                        <CheckCircle2 color="#10b981" size={24} />
-                                        <span style={{ fontSize: '1.1rem', fontWeight: 700 }}>{t('pricing.simple')}</span>
+                                <div style={{ 
+                                    display: 'flex', 
+                                    flexDirection: 'column', 
+                                    gap: '1.25rem', 
+                                    marginTop: '1rem',
+                                    borderTop: '1px solid var(--border-dark)',
+                                    paddingTop: '1.5rem'
+                                }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <CheckCircle2 color="var(--accent-orange)" size={20} />
+                                        <span style={{ fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-body)' }}>{t('pricing.simple')}</span>
                                     </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                        <CheckCircle2 color="#3b82f6" size={24} />
-                                        <span style={{ fontSize: '1.1rem', fontWeight: 700 }}>{t('pricing.advanced')}</span>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <CheckCircle2 color="var(--accent-blue)" size={20} />
+                                        <span style={{ fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-body)' }}>{t('pricing.advanced')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -128,18 +147,6 @@ const Pricing = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Background Glow */}
-            <div style={{
-                position: 'absolute',
-                bottom: '-20%',
-                right: '10%',
-                width: '600px',
-                height: '600px',
-                background: 'radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%)',
-                zIndex: 0,
-                pointerEvents: 'none'
-            }} />
         </section>
     );
 };
