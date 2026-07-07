@@ -127,6 +127,11 @@ i18n
                         success: "Wiadomość została wysłana pomyślnie!",
                         error: "Coś poszło nie tak. Spróbuj ponownie lub napisz na kontakt@mksites.pl."
                     },
+                    thankyou: {
+                        title: "DZIĘKUJEMY ZA KONTAKT!",
+                        subtitle: "Otrzymaliśmy Twoją wiadomość. Odpowiemy na nią w ciągu najbliższych kilku godzin.",
+                        button: "Wróć do strony głównej"
+                    },
                     footer: {
                         rights: "MKSites. Wszystkie prawa zastrzeżone."
                     }
@@ -246,6 +251,11 @@ i18n
                         message: "Message",
                         success: "Message sent successfully!",
                         error: "Something went wrong. Please try again or email kontakt@mksites.pl."
+                    },
+                    thankyou: {
+                        title: "THANK YOU FOR CONTACTING US!",
+                        subtitle: "We have received your message. We will reply to it within the next few hours.",
+                        button: "Back to Homepage"
                     },
                     footer: {
                         rights: "MKSites. All rights reserved."

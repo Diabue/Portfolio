@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Phone, Mail, Github, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Reveal } from './Reveal';
@@ -6,6 +7,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const Contact = () => {
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
     const isMobile = useMediaQuery('(max-width: 960px)');
 
     const [name, setName] = useState('');
@@ -53,6 +55,9 @@ const Contact = () => {
                 setName('');
                 setEmail('');
                 setMessage('');
+                setTimeout(() => {
+                    navigate('/thank-you');
+                }, 1500);
             } else {
                 setSubmitStatus('error');
                 console.error("Błąd Web3Forms:", result);
