@@ -26,7 +26,7 @@ const Contact = () => {
         setSubmitStatus(null);
 
         const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
-        
+
         if (!accessKey) {
             console.error("Brak klucza VITE_WEB3FORMS_ACCESS_KEY w pliku .env");
             setSubmitStatus('error');
@@ -113,9 +113,9 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" style={{ 
+        <section id="contact" style={{
             minHeight: '80vh',
-            display: 'flex', 
+            display: 'flex',
             alignItems: 'center',
             backgroundColor: 'var(--bg-color)',
             padding: '6rem 2rem'
@@ -123,14 +123,14 @@ const Contact = () => {
             <div className="container">
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <Reveal>
-                        <h2 style={{ 
+                        <h2 style={{
                             fontFamily: 'var(--font-display)',
-                            fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
-                            fontWeight: 900, 
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                            fontWeight: 900,
                             letterSpacing: '-0.02em',
                             lineHeight: 1.0,
                             textTransform: 'uppercase',
-                            marginBottom: '1rem' 
+                            marginBottom: '1rem'
                         }}>
                             {t('contact.title')} <span style={{ color: 'var(--accent-red)' }}>{t('contact.titleAccent')}</span>
                         </h2>
@@ -150,21 +150,21 @@ const Contact = () => {
                     </Reveal>
                 </div>
 
-                <div style={{ 
-                    display: 'flex', 
+                <div style={{
+                    display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
-                    gap: '30px', 
-                    maxWidth: '1200px', 
+                    gap: '30px',
+                    maxWidth: '1200px',
                     margin: '0 auto',
                     alignItems: 'stretch'
                 }}>
                     {/* Left Column: Contact Cards */}
-                    <div style={{ 
-                        flex: 1, 
-                        display: 'flex', 
-                        flexDirection: 'column', 
+                    <div style={{
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
                         gap: '16px',
-                        width: '100%' 
+                        width: '100%'
                     }}>
                         {contactItems.map((item, idx) => (
                             <Reveal key={idx} delay={idx * 0.1} direction="up" width="100%">
@@ -202,22 +202,22 @@ const Contact = () => {
                                         <item.icon size={18} strokeWidth={2} />
                                     </div>
                                     <div style={{ width: '100%' }}>
-                                        <h3 style={{ 
+                                        <h3 style={{
                                             fontFamily: 'var(--font-display)',
-                                            fontSize: '11px', 
-                                            color: 'var(--text-secondary)', 
-                                            marginBottom: '0.25rem', 
-                                            fontWeight: 700, 
-                                            textTransform: 'uppercase', 
-                                            letterSpacing: '0.08em' 
+                                            fontSize: '11px',
+                                            color: 'var(--text-secondary)',
+                                            marginBottom: '0.25rem',
+                                            fontWeight: 700,
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.08em'
                                         }}>
                                             {item.label}
                                         </h3>
-                                        <p style={{ 
+                                        <p style={{
                                             fontFamily: 'var(--font-display)',
-                                            fontSize: '1.5rem', 
-                                            color: 'var(--text-primary)', 
-                                            fontWeight: 800, 
+                                            fontSize: '1.5rem',
+                                            color: 'var(--text-primary)',
+                                            fontWeight: 800,
                                             textTransform: 'uppercase',
                                             marginBottom: '0.75rem',
                                             letterSpacing: '-0.02em',
@@ -225,15 +225,15 @@ const Contact = () => {
                                         }}>
                                             {item.value}
                                         </p>
-                                        <div style={{ 
-                                            display: 'inline-flex', 
-                                            alignItems: 'center', 
-                                            gap: '4px', 
-                                            color: '#FFFFFF', 
+                                        <div style={{
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            color: '#FFFFFF',
                                             backgroundColor: '#111111',
                                             borderRadius: '30px',
                                             padding: '6px 14px',
-                                            fontSize: '12px', 
+                                            fontSize: '12px',
                                             fontWeight: 500,
                                             fontFamily: 'var(--font-body)'
                                         }}>
@@ -285,7 +285,7 @@ const Contact = () => {
                                             textAlign: 'center'
                                         }}
                                     >
-                                        {i18n.language === 'pl' ? 'Zdecydowany?' : 'Ready to Start?'}
+                                        {i18n.language === 'pl' ? 'Zdecydowany/a?' : 'Ready to Start?'}
                                     </button>
                                     <button
                                         type="button"
@@ -479,8 +479,8 @@ const Contact = () => {
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         required
-                                        placeholder={activeTab === 'brief' 
-                                            ? (i18n.language === 'pl' ? 'Opisz krótko czym zajmuje się Twoja firma i jaki jest cel nowej strony...' : 'Briefly describe your business and the purpose of the new site...') 
+                                        placeholder={activeTab === 'brief'
+                                            ? (i18n.language === 'pl' ? 'Opisz krótko czym zajmuje się Twoja firma i jaki jest cel nowej strony...' : 'Briefly describe your business and the purpose of the new site...')
                                             : t('contact.message')}
                                         style={textareaStyle}
                                         onFocus={(e) => e.target.style.borderColor = 'var(--text-primary)'}
@@ -513,8 +513,8 @@ const Contact = () => {
                                         if (!isSubmitting) e.currentTarget.style.backgroundColor = 'var(--bg-dark-section)';
                                     }}
                                 >
-                                    {isSubmitting 
-                                        ? (i18n.language === 'pl' ? 'Wysyłanie...' : 'Sending...') 
+                                    {isSubmitting
+                                        ? (i18n.language === 'pl' ? 'Wysyłanie...' : 'Sending...')
                                         : (activeTab === 'brief' ? (i18n.language === 'pl' ? 'Wyślij brief i odbierz wycenę ->' : 'Submit brief ->') : t('contact.send'))}
                                 </button>
                             </form>
