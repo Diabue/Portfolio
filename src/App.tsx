@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -15,6 +15,24 @@ import InquiryPage from './components/InquiryPage';
 import './i18n';
 import './App.css';
 
+// Scrolls to the section matching the URL hash (e.g. mksites.pl/#pricing) on cold
+// page loads, not just in-app nav clicks - Google Ads sitelinks land here directly
+// before the page has finished mounting, so a plain browser hash-jump can miss.
+function ScrollToHash() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.slice(1);
+    const timer = setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [hash]);
+
+  return null;
+}
+
 function App() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -28,6 +46,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className={`app ${isMobile ? 'mobile' : ''}`}>
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={
             <>
