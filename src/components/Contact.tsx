@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Phone, Mail, Github, ExternalLink } from 'lucide-react';
+import { Phone, Mail, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Reveal } from './Reveal';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -92,7 +92,7 @@ const Contact = () => {
             value: "795 052 809",
             href: "tel:+48795052809",
             color: "var(--accent-red)",
-            cta: "Zadzwoń teraz"
+            cta: t('contact.cta_call')
         },
         {
             icon: Mail,
@@ -100,15 +100,7 @@ const Contact = () => {
             value: "kontakt@mksites.pl",
             href: "mailto:kontakt@mksites.pl",
             color: "var(--accent-blue)",
-            cta: "Wyślij zapytanie"
-        },
-        {
-            icon: Github,
-            label: "GitHub",
-            value: "Diabue",
-            href: "https://github.com/Diabue",
-            color: "#111111",
-            cta: "Zobacz kod"
+            cta: t('contact.cta_email')
         }
     ];
 
@@ -430,11 +422,11 @@ const Contact = () => {
                                                 onChange={(e) => setProjectType(e.target.value)}
                                                 style={selectStyle}
                                             >
-                                                <option value="website">Strona Firmowa (od 1000 zł)</option>
-                                                <option value="landing">Landing Page (od 900 zł)</option>
-                                                <option value="store">Sklep Internetowy (od 1500 zł)</option>
-                                                <option value="booking">System Rezerwacji / CRM (od 2500 zł)</option>
-                                                <option value="other">Inny / Indywidualny projekt</option>
+                                                <option value="website">{t('contact.opt_website')}</option>
+                                                <option value="landing">{t('contact.opt_landing')}</option>
+                                                <option value="store">{t('contact.opt_store')}</option>
+                                                <option value="booking">{t('contact.opt_booking')}</option>
+                                                <option value="other">{t('contact.opt_other')}</option>
                                             </select>
                                         </div>
 
@@ -453,9 +445,9 @@ const Contact = () => {
                                                 onChange={(e) => setBudget(e.target.value)}
                                                 style={selectStyle}
                                             >
-                                                <option value="under-1500">Poniżej 1500 zł</option>
-                                                <option value="1500-3000">1500 – 3000 zł (Rekomendowany)</option>
-                                                <option value="over-3000">Powyżej 3000 zł</option>
+                                                <option value="under-1500">{t('contact.budget_under')}</option>
+                                                <option value="1500-3000">{t('contact.budget_mid')}</option>
+                                                <option value="over-3000">{t('contact.budget_over')}</option>
                                             </select>
                                         </div>
                                     </>

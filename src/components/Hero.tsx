@@ -1,5 +1,6 @@
 import { ArrowRight, Phone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -7,13 +8,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 const Hero = () => {
     const { t } = useTranslation();
     const isMobile = useMediaQuery('(max-width: 768px)');
-
-    const scrollToContact = () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    const navigate = useNavigate();
 
     return (
         <section id="home" style={{
@@ -72,7 +67,7 @@ const Hero = () => {
                             gap: '2rem' 
                         }}>
                             <motion.button
-                                onClick={scrollToContact}
+                                onClick={() => navigate('/inquiry')}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 style={{

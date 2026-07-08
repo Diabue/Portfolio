@@ -23,7 +23,7 @@ const Navigation = () => {
     };
 
     const navLinks = [
-        { label: 'Start', href: '#home' },
+        { label: t('nav.home', 'Start'), href: '#home' },
         { label: t('nav.services', 'Oferta'), href: '#services' },
         { label: t('nav.whyme', 'Dlaczego my'), href: '#whyme' },
         { label: t('nav.projects', 'Projekty'), href: '#projects' },

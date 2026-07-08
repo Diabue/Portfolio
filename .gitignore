@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 .env
+
+# Temporary files and tool outputs
+vite.pid
+graphify-out/
+src/graphify-out/
+

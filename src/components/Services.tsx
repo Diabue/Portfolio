@@ -78,13 +78,15 @@ const Services = () => {
                     maxWidth: '1440px',
                     margin: '0 auto'
                 }}>
-                    {services.map((service, index) => (
-                        <Reveal 
-                            key={index} 
-                            delay={index * 0.1} 
+                    {services.map((service, index) => {
+                        const isHot = service.badge === 'HOT';
+                        return (
+                        <Reveal
+                            key={index}
+                            delay={index * 0.1}
                             direction="up"
                         >
-                            <div 
+                            <div
                                 className="glass-panel"
                                 style={{
                                     padding: '2.5rem 2rem',
@@ -92,19 +94,38 @@ const Services = () => {
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: '1.5rem',
-                                    border: '1px solid var(--border-secondary)',
+                                    border: isHot ? '2px solid var(--accent-red)' : '1px solid var(--border-secondary)',
                                     borderRadius: '0px', /* Sharp corners */
                                     backgroundColor: 'var(--bg-surface)',
                                     textAlign: 'left',
-                                    position: 'relative'
+                                    position: 'relative',
+                                    boxShadow: isHot ? '0 12px 32px rgba(0,0,0,0.12)' : 'none',
                                 }}
                             >
+                                {isHot && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '-1px',
+                                        right: '1.5rem',
+                                        backgroundColor: 'var(--accent-red)',
+                                        color: '#FFFFFF',
+                                        fontFamily: 'var(--font-body)',
+                                        fontSize: '11px',
+                                        fontWeight: 700,
+                                        letterSpacing: '0.08em',
+                                        textTransform: 'uppercase',
+                                        padding: '4px 12px',
+                                    }}>
+                                        Most Popular
+                                    </div>
+                                )}
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <span style={{
                                         fontFamily: 'var(--font-display)',
                                         fontSize: '14px',
                                         fontWeight: 800,
-                                        color: 'var(--accent-red)',
+                                        color: isHot ? '#FFFFFF' : 'var(--accent-red)',
+                                        backgroundColor: isHot ? 'var(--accent-red)' : 'transparent',
                                         border: '1.5px solid var(--accent-red)',
                                         padding: '2px 8px',
                                         letterSpacing: '0.05em'
@@ -163,7 +184,8 @@ const Services = () => {
                                 </div>
                             </div>
                         </Reveal>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

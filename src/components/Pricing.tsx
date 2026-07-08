@@ -111,7 +111,7 @@ const Pricing = () => {
                                         textTransform: 'uppercase',
                                         marginBottom: '1.5rem'
                                     }}>
-                                        <Info size={14} /> GWARANCJA UCZCIWOŚCI
+                                        <Info size={14} /> {t('pricing.badge')}
                                     </div>
                                     <h4 style={{ 
                                         fontFamily: 'var(--font-display)',

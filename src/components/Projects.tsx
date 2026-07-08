@@ -26,7 +26,8 @@ const Projects = () => {
             color: "var(--accent-red)",
             tag: "Event Venue",
             image: project4Img,
-            metric: "+40% Rezerwacji"
+            imagePosition: 'center',
+            metric: t('projects.p1_metric')
         },
         {
             id: 2,
@@ -38,7 +39,8 @@ const Projects = () => {
             color: "var(--accent-blue)",
             tag: "Detailing Studio",
             image: projekt5Img,
-            metric: "Klient Premium"
+            imagePosition: 'left',
+            metric: t('projects.p2_metric')
         },
         {
             id: 3,
@@ -50,7 +52,8 @@ const Projects = () => {
             color: "var(--accent-orange)",
             tag: "Software Solution",
             image: project3Img,
-            metric: "20h/Tydz Oszczędności"
+            imagePosition: 'left',
+            metric: t('projects.p3_metric')
         }
     ];
 
@@ -147,7 +150,7 @@ const Projects = () => {
                                                 fontFamily: 'var(--font-body)'
                                             }}
                                         >
-                                            <ArrowLeft size={16} /> Wróć
+                                            <ArrowLeft size={16} /> {t('projects.back')}
                                         </button>
                                         <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', color: '#111111' }}>{expandedProject.title}</h3>
                                     </div>
@@ -198,10 +201,11 @@ const ProjectCard = ({ project, idx, isHovered, onHover, onClick, t }: any) => (
                     src={project.image} 
                     alt={project.title} 
                     style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'cover', 
-                        transform: isHovered ? 'scale(1.02)' : 'scale(1)', 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: project.imagePosition || 'center',
+                        transform: isHovered ? 'scale(1.02)' : 'scale(1)',
                         transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
                     }} 
                 />

@@ -218,11 +218,11 @@ const InquiryPage = () => {
                                     onChange={(e) => setProjectType(e.target.value)}
                                     style={selectStyle}
                                 >
-                                    <option value="website">Strona Firmowa (od 1000 zł)</option>
-                                    <option value="landing">Landing Page (od 900 zł)</option>
-                                    <option value="store">Sklep Internetowy (od 1500 zł)</option>
-                                    <option value="booking">System Rezerwacji / CRM (od 2500 zł)</option>
-                                    <option value="other">Inny / Indywidualny projekt</option>
+                                    <option value="website">{t('inquiry.opt_website')}</option>
+                                    <option value="landing">{t('inquiry.opt_landing')}</option>
+                                    <option value="store">{t('inquiry.opt_store')}</option>
+                                    <option value="booking">{t('inquiry.opt_booking')}</option>
+                                    <option value="other">{t('inquiry.opt_other')}</option>
                                 </select>
                             </div>
                         </div>
@@ -236,9 +236,9 @@ const InquiryPage = () => {
                                 onChange={(e) => setBudget(e.target.value)}
                                 style={selectStyle}
                             >
-                                <option value="under-1500">Poniżej 1500 zł</option>
-                                <option value="1500-3000">1500 – 3000 zł (Rekomendowany)</option>
-                                <option value="over-3000">Powyżej 3000 zł</option>
+                                <option value="under-1500">{t('inquiry.budget_under')}</option>
+                                <option value="1500-3000">{t('inquiry.budget_mid')}</option>
+                                <option value="over-3000">{t('inquiry.budget_over')}</option>
                             </select>
                         </div>
 
