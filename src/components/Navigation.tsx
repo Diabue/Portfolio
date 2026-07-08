@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Phone } from 'lucide-react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const Navigation = () => {
@@ -136,10 +136,10 @@ const Navigation = () => {
 
                     {/* Contact Button */}
                     {!isMobile && (
-                        <button
-                            onClick={() => handleLinkClick('#contact')}
+                        <a
+                            href="tel:+48795052809"
                             style={{
-                                backgroundColor: 'var(--bg-dark-section)',
+                                backgroundColor: 'var(--accent-red)',
                                 color: '#FFFFFF',
                                 border: 'none',
                                 borderRadius: '30px',
@@ -148,13 +148,17 @@ const Navigation = () => {
                                 fontWeight: 500,
                                 fontSize: '14px',
                                 cursor: 'pointer',
+                                textDecoration: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
                                 transition: 'background-color 0.2s ease',
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--border-primary)'}
-                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-dark-section)'}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--text-secondary)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--accent-red)'}
                         >
-                            {t('nav.contact_cta', 'Szybki Kontakt')}
-                        </button>
+                            <Phone size={14} /> 795 052 809
+                        </a>
                     )}
 
                     {/* Mobile Menu Icon */}
@@ -205,10 +209,10 @@ const Navigation = () => {
                             {link.label}
                         </a>
                     ))}
-                    <button
-                        onClick={() => handleLinkClick('#contact')}
+                    <a
+                        href="tel:+48795052809"
                         style={{
-                            backgroundColor: 'var(--bg-dark-section)',
+                            backgroundColor: 'var(--accent-red)',
                             color: '#FFFFFF',
                             border: 'none',
                             borderRadius: '30px',
@@ -218,10 +222,15 @@ const Navigation = () => {
                             fontSize: '16px',
                             cursor: 'pointer',
                             textAlign: 'center',
+                            textDecoration: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
                         }}
                     >
-                        {t('nav.contact_cta', 'Szybki Kontakt')}
-                    </button>
+                        <Phone size={18} /> 795 052 809
+                    </a>
                 </div>
             )}
         </header>
