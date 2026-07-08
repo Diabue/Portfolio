@@ -101,7 +101,7 @@ const Hero = () => {
                                 gap: '0.25rem',
                                 borderLeft: isMobile ? 'none' : '2px solid var(--border-secondary)',
                                 paddingLeft: isMobile ? '0' : '1.5rem',
-                                textAlign: 'left',
+                                textAlign: isMobile ? 'center' : 'left',
                             }}>
                                 <div style={{ 
                                     display: 'flex', 
